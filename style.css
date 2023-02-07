@@ -1,16 +1,6 @@
-*{
+/* *{
     font-family: Arial, Helvetica, sans-serif;
 }
+ */
 
-.navbar {
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-} 
-.navbar_item{
-    height: 100%;
-    width: calc((100vw)/3);
-    border: 1px solid black;
-    text-align: center;
-}
+ 
