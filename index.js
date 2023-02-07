@@ -10,10 +10,13 @@ nameChangeButton.addEventListener("click", () => {
     console.log("test")
     nameDiv.style.display = "block";
     nameChangeInput.value = petNameP.textContent;
+        nameChangeButton.style.display = "none"
 })
 
 nameChangeSubmit.addEventListener("click", () => {
     console.log("test2")
     nameDiv.style.display = "none";
     petNameP.textContent = nameChangeInput.value;
+    nameChangeButton.style.display = "block"
+
 })
