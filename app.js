@@ -54,12 +54,12 @@ class BasePet {
     #replenish(value) {
         // Prevents the player from having replenishment higher than max
         if (!(this.currentHappiness + value > this.maxHappiness)) {
-            this.maxHappiness = this.maxHappiness;
+            this.currentHappiness = this.maxHappiness;
             return;
         }
 
         // Adds to the happiness
-        this.maxHappiness += value;
+        this.currentHappiness += value;
     }
 
     // this is a private method
