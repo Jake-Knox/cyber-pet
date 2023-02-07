@@ -40,7 +40,7 @@ class BasePet {
     // adds health to the pet
     #heal(value) {
         // Prevents the player from having health higher than max
-        if (!(this.currentHealth + value > this.maxHealth)) {
+        if (this.currentHealth + value > this.maxHealth) {
             this.currentHealth = this.maxHealth;
             return;
         }
@@ -53,7 +53,7 @@ class BasePet {
     // adds hunger to the pet
     #replenish(value) {
         // Prevents the player from having replenishment higher than max
-        if (!(this.currentHappiness + value > this.maxHappiness)) {
+        if (this.currentHappiness + value > this.maxHappiness) {
             this.currentHappiness = this.maxHappiness;
             return;
         }
