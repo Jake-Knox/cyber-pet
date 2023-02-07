@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="test_page_style.css">
+    
     
     <title>CyberPet Test Page</title>
 </head>
@@ -14,20 +16,32 @@
 <body id="index_body">
     <div class="navbar">
         <a href="index.html" class="navbar_item"><div >
-            <p>index</p>
+            index
         </div></a>
         <a href="test_page.html" class="navbar_item"><div >
-            <p>test</p>
+            test
         </div></a>
         <a href="about.html" class="navbar_item"><div >
-            <p>about</p>
+            about
         </div></a>
     </div>
     
     <h1 class="mainfont">CyberPet Test Page</h1>
 
-    <div>
-        <img src="images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
+    <div id="picture_selector">
+
+        <div id="buttons">
+            <button id="godzilla_button">select godzilla</button>
+            <button id="kong_button">select kong</button>
+            <button id="sheep_button">select sheep</button>
+        </div>
+        
+        <div id="pictures">
+            <img id="godzilla" src="images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
+            <img id="kong" src="images/kong.jpg" alt="a masterpiece artwork of king kong">
+            <img id="sheep" src="images/sheep.jpg" alt="a truly phenomenal drawing of a sheep">
+        </div>
+
     </div>
 
     <div>
@@ -40,12 +54,14 @@
     </div>
 
     <div id="toolbar">
-        <a>feed</a>
-        <a>drink</a>
-        <a>play</a>
-        <a>clean</a>
+        <div class="old_a">feed</div>
+        <div class="old_a">drink</div>
+        <div class="old_a">play</div>
+        <div class="old_a">clean</div>
     </div>
-    
+
+    <script src="test_page_script.js"></script>
+
 </body>
 
 </html>
