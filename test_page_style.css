@@ -14,6 +14,34 @@
     font-family: 'IM Fell English SC', serif;
 }
 
+.navbar {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+} 
+.navbar_item{
+    height: 100%;
+    width: calc((100vw)/3);    
+    /* border: 1px solid black; */
+    text-align: center;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+#picture_selector{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body{
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
@@ -36,7 +64,7 @@ body{
     margin: 0px 0px 0px 0px;
 }
 
-a {
+.old_a {
     display:flex;
     align-items: center;
     color: #61b292;
@@ -54,14 +82,14 @@ a {
     min-height: 6vh;
 }
 
-a:hover {
+.old_a:hover {
     color:#61b292;
     font-weight: bolder;
     background-color:#a8896c;
     border-color: #a8896c;
 }
 
-a:active {
+.old_a:active {
     color: #35492c;
     background-color: #1c0818;
     border-color: #57402b;
@@ -69,12 +97,12 @@ a:active {
     border-style:inset;
 }
 
-#index_body {
-    /* background-image: url(images/church_int_wide.png); */
+/* #index_body {
+    background-image: url(images/church_int_wide.png);
     background-color: none;
     background-repeat: no-repeat;
     background-size: 100vw;
-}
+} */
 
 .mainfont {
     color:#35492c;
@@ -94,4 +122,10 @@ p {
     font-size: 3.3em;
     padding: 3vw 3vw 3vw 3vw;
     margin: 0px 0px 0px 0px;
+}
+
+#name_change{
+    display: none;
+    position: absolute;
+
 }
