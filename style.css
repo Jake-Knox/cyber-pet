@@ -3,13 +3,14 @@
 }
 
 .navbar {
-    width: 100%;
+    width: 100vw;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
-}
+} 
 .navbar_item{
     height: 100%;
-    width: calc((100%)/3);
+    width: calc((100vw)/3);
     border: 1px solid black;
     text-align: center;
 }
