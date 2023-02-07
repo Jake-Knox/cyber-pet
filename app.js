@@ -1,3 +1,14 @@
+
+/**
+ * Makes sure the number is never lower than min or higher than max
+ * @param num Your number value.
+ * @param min The minimum value the number can be.
+ * @param max The maximum value the number can be.
+ */
+const Clamp = (num, min, max) => {
+    return Math.min(Math.max(num, min), max);
+}
+
 class BasePet {
     currentHealth = 999;
     currentHunger = 999;
@@ -21,51 +32,42 @@ class BasePet {
     }
 
     feed() {
-        // add to hunger
+        // do something when fed
     }
 
     clean() {
-        // add to happiness
+        // do something when cleaned
     }
 
     play() {
-        // add to happiness
-    }
-
-    drink() {
-        // add to something, unsure yet
+        // do something when played with
     }
 
     // this is a private method, can only be called from inside the class
     // adds health to the pet
-    #heal(value) {
-        // Prevents the player from having health higher than max
-        if (this.currentHealth + value > this.maxHealth) {
-            this.currentHealth = this.maxHealth;
-            return;
-        }
-
-        // Adds to the health
-        this.currentHealth += value;
+    #addToHealth(value) {
+        // Adds to the health and makes sures its never above the max health
+        this.currentHealth = Clamp(this.currentHealth + value, -1, this.maxHealth);
     }
 
     // this is a private method
     // adds hunger to the pet
-    #replenish(value) {
-        // Prevents the player from having replenishment higher than max
-        if (this.currentHappiness + value > this.maxHappiness) {
-            this.currentHappiness = this.maxHappiness;
-            return;
-        }
+    #addToHunger(value) {
+        // Adds to the hunger and makes sure its never above max hunger
+        this.currentHunger = Clamp(this.currentHunger + value, 0, this.maxHunger);
+    }
 
-        // Adds to the happiness
-        this.currentHappiness += value;
+    // add happiness to the pet
+    #addToHappiness(value) {
+        // Adds to the happiness and makes sure its never above max happiness
+        this.currentHappiness = Clamp(this.currentHappiness + value, 0, this.maxHappiness)
     }
 
     // this is a private method
     // removes health from the pet
     #takeDamage(value) {
-        this.currentHealth -= value;
+        // removes the value from the health and makes sure it never goes below -1
+        this.currentHealth = Clamp(this.currentHealth - value, -1, this.maxHealth);
         
         // if the health is lower than 0 after we removed the health, then die
         if(this.currentHealth <= 0) {
