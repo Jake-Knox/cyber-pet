@@ -139,5 +139,7 @@ p {
 #name_change{
     display: none;
     position: absolute;
-
+    height: 15vh;
+    width: 15vw;
+    background-color: red;
 }
