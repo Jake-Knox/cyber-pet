@@ -63,9 +63,8 @@ class BasePet {
         this.currentHappiness = Clamp(this.currentHappiness + value, 0, this.maxHappiness)
     }
 
-    // this is a private method
     // removes health from the pet
-    #takeDamage(value) {
+    takeDamage(value) {
         // removes the value from the health and makes sure it never goes below -1
         this.currentHealth = Clamp(this.currentHealth - value, -1, this.maxHealth);
         
