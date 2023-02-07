@@ -16,15 +16,18 @@
 
 .navbar {
     width: 100vw;
+    height: 5vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 } 
 .navbar_item{
     height: 100%;
-    width: calc((100vw)/3);
-    border: 1px solid black;
+    width: calc((100vw)/3);    
+    /* border: 1px solid black; */
     text-align: center;
+    font-size: 2em;
+    text-decoration: none;
 }
 
 #picture_selector{
@@ -119,4 +122,10 @@ p {
     font-size: 3.3em;
     padding: 3vw 3vw 3vw 3vw;
     margin: 0px 0px 0px 0px;
+}
+
+#name_change{
+    display: none;
+    position: absolute;
+
 }
