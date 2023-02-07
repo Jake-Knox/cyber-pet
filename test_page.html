@@ -26,8 +26,20 @@
     
     <h1 class="mainfont">CyberPet Test Page</h1>
 
-    <div>
-        <img src="images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
+    <div id="picture_selector">
+
+        <div id="buttons">
+            <button id="godzilla_button">select godzilla</button>
+            <button id="kong_button">select kong</button>
+            <button id="sheep_button">select sheep</button>
+        </div>
+        
+        <div id="pictures">
+            <img id="godzilla" src="images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
+            <img id="kong" src="images/kong.jpg" alt="a masterpiece artwork of king kong">
+            <img id="sheep" src="images/sheep.jpg" alt="a truly phenomenal drawing of a sheep">
+        </div>
+
     </div>
 
     <div>
@@ -45,7 +57,9 @@
         <a>play</a>
         <a>clean</a>
     </div>
-    
+
+    <script src="test_page_script.js"></script>
+
 </body>
 
 </html>
