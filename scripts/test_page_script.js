@@ -13,6 +13,8 @@ const sheep_button=document.getElementById("sheep_button");
 
 const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
+const thirstBar = document.getElementById("status-bar-thirst");
+const happinessBar = document.getElementById("status-bar-happiness");
 
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
@@ -36,22 +38,22 @@ window.addEventListener("load", (event) => {
     if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
         
     }else if(petType == petTypeEnum.kingKong)
     {
         // create a kingkong
-        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
         
     } else if(petType == petTypeEnum.godzilla)
     {
         // create a godzilla
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
         
     }
     else{
         //option for loading the game page without creating a pet first?
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
     }
 
 
@@ -129,7 +131,7 @@ class BasePet {
     currentHappiness = 999;
 
     // Setting up the main values of the pet
-    constructor(name, maxHealth, maxHunger, maxHappiness) {
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness) {
         this.name = name;
 
         // sets up the health
@@ -139,6 +141,10 @@ class BasePet {
         // sets up the hunger
         this.maxHunger = maxHunger;
         this.currentHunger = maxHunger;
+
+        // sets up the thirst
+        this.maxThirst = maxThirst;
+        this.currentThirst = maxThirst;
 
         // sets up the happiness
         this.maxHappiness = maxHappiness;
@@ -158,30 +164,33 @@ class BasePet {
         // do something when played with
     }
 
-    // this is a private method, can only be called from inside the class
-    // adds health to the pet
-    addToHealth(value) {
+    // modifies health by value given
+    modifyHealthByValue(value) {
         // Adds to the health and makes sures its never above the max health
         this.currentHealth = Clamp(this.currentHealth + value, 0, this.maxHealth);
     }
 
-    // this is a private method
-    // adds hunger to the pet
-    addToHunger(value) {
+    // modifies thirst by value given
+    modifyThirstByValue(value) {
+        // Adds to the hunger and makes sure its never above max hunger
+        this.currentThirst = Clamp(this.currentThirst + value, 0, this.maxThirst);
+    }
+
+    // modifies hunger by value given
+    modifyHungerByValue(value) {
         // Adds to the hunger and makes sure its never above max hunger
         this.currentHunger = Clamp(this.currentHunger + value, 0, this.maxHunger);
     }
 
-    // add happiness to the pet
-    addToHappiness(value) {
+    // modifies happiness by value given
+    modifyHappinessByValue(value) {
         // Adds to the happiness and makes sure its never above max happiness
         this.currentHappiness = Clamp(this.currentHappiness + value, 0, this.maxHappiness)
     }
 
     // removes health from the pet
     takeDamage(value) {
-        // removes the value from the health and makes sure it never goes below -1
-        this.currentHealth = Clamp(this.currentHealth - value, 0, this.maxHealth);
+        this.modifyHealthByValue(-value)
         
         // if the health is lower than 0 after we removed the health, then die
         if(this.currentHealth <= 0) {
@@ -211,8 +220,8 @@ class ElectricSheep extends BasePet {
 
     currentCharge = 999;
 
-    constructor(name, maxHealth, maxHunger, maxHappiness, maxCharge) {
-        super(name, maxHealth, maxHunger, maxHappiness)
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxCharge) {
+        super(name, maxHealth, maxHunger, maxThirst, maxHappiness)
 
         this.maxCharge = maxCharge;
         this.currentCharge = maxCharge;
@@ -234,8 +243,8 @@ class ElectricSheep extends BasePet {
 class KingKong extends BasePet {
 
     currentPowerness = 999;
-    constructor(name, maxHealth, maxHunger, maxHappiness, maxPowerness) {
-        super(name, maxHealth, maxHunger, maxHappiness);
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxPowerness) {
+        super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
 
         this.maxPowerness = maxPowerness;
         this.currentPowerness = maxPowerness;
@@ -254,8 +263,8 @@ class KingKong extends BasePet {
 class Godzilla extends BasePet {
 
     currentRadiation = 999;
-    constructor(name, maxHealth, maxHunger, maxHappiness, maxRadiation) {
-        super(name, maxHealth, maxHunger, maxHappiness);
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxRadiation) {
+        super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
 
         this.maxRadiation = maxRadiation;
         this.currentRadiation = maxRadiation
@@ -276,7 +285,9 @@ class Godzilla extends BasePet {
 const timingFunction = () => {
     window.setInterval(() => {
         myPet.takeDamage(50);
-        myPet.addToHunger(-1);
+        myPet.modifyHungerByValue(-20);
+        myPet.modifyThirstByValue(-10);
+        myPet.modifyHappinessByValue(-40);
         console.log(myPet)
        
 
@@ -287,6 +298,8 @@ const timingFunction = () => {
 const updateStatusBars = () => {
     healthBar.style.width=`${(myPet.currentHealth / myPet.maxHealth) * 100}%`;
     hungerBar.style.width=`${(myPet.currentHunger / myPet.maxHunger) * 100}%`;
+    thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
+    happinessBar.style.width = `${(myPet.currentHappiness / myPet.maxHappiness) * 100}%`;
 }
 
 
