@@ -87,3 +87,16 @@
     height: 20vh;
     width: 10vw;
 }
+
+#name_change{
+
+    /* needs flex */
+    display: none;
+    position: fixed;
+    height: 15vh;
+    width: 40vw;
+    top: 30vh;
+    left: 30vh;
+    background-color: #57402b;
+    box-shadow: 3px 3px #f1e8a7;
+}
