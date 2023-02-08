@@ -25,9 +25,26 @@ window.addEventListener("load", (event) => {
     if(userSettings.petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        const myPet = new Sheep(userSettings.name,999,999,999,999)
+        const myPet = new ElectricSheep(userSettings.name,999,999,999,999)
+        
+    }else if(userSettings.petType == petTypeEnum.electricSheep)
+    {
+        // create a kingkong
+        const myPet = new KingKong(userSettings.name,999,999,999,999)
+        
+    } else if(userSettings.petType == petTypeEnum.electricSheep)
+    {
+        // create a godzilla
+        const myPet = new Godzilla(userSettings.name,999,999,999,999)
         
     }
+    else{
+        //option for loading the game page without creating a pet first?
+        const myPet = new Godzilla(userSettings.name,999,999,999,999)
+    }
+
+
+
 })
 
 
@@ -162,7 +179,7 @@ class BasePet {
 }
 
 // sheep class
-class Sheep extends BasePet {
+class ElectricSheep extends BasePet {
     // tring to be consistent with naming conventions from earlier on 
     // and comment :)
 
