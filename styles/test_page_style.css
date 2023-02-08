@@ -113,6 +113,14 @@ p {
     background-color: rgb(255,201,14);
 }
 
+#status-bar-thirst {
+    background-color: rgb(153,217,234);
+}
+
+#status-bar-happiness {
+    background-color: rgb(255,174,201);
+}
+
 body{
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
