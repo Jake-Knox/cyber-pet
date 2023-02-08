@@ -8,9 +8,15 @@ const Clamp = (num, min, max) => {
     return Math.min(Math.max(num, min), max);
 }
 
+const petTypeEnum = {
+    godzilla: 100,
+    kingKong: 200,
+    electricSheep: 300,
+}
+
 const userSettings = {
     name: "",
     petType: "",
 }
 
-export { userSettings, Clamp };
+export { userSettings, Clamp, petTypeEnum };
