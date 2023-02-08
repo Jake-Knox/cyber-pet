@@ -30,8 +30,6 @@ window.addEventListener("load", (event) => {
     
     // create out pet based on userSettings info
 
-    //const specificPetBar = document.createElement();
-
     const petType = localStorage.getItem("userSettingsPetType");
     if(petType == petTypeEnum.electricSheep)
     {
@@ -250,15 +248,26 @@ class Godzilla extends BasePet {
 //
 const timingFunction = () => {
     window.setInterval(() => {
-        myPet.takeDamage(50);
-        myPet.modifyHungerByValue(-20);
+        myPet.modifyHungerByValue(-10);
         myPet.modifyThirstByValue(-10);
-        myPet.modifyHappinessByValue(-40);
-        console.log(myPet)
-       
+        myPet.modifyHappinessByValue(-15);
+        myPet.takeDamage(calculateDamage());
 
+        console.log(myPet)
         updateStatusBars();
     },1000); // every 1 second
+}
+
+const calculateDamage = () => {
+    const hungerPercentage = (myPet.currentHunger / myPet.maxHunger) * 100;
+    const thirstPercetange = (myPet.currentThirst / myPet.maxThirst) * 100;
+    const happinessPercentage = (myPet.currentHappiness / myPet.maxHappiness) * 100;
+    
+    const hungerDamage = (100 - hungerPercentage) / 7
+    const thirstDamage = (100 - thirstPercetange) / 7
+    const happinessDamage = (100 - happinessPercentage) / 10
+
+    return hungerDamage + thirstDamage + happinessDamage
 }
 
 const updateStatusBars = () => {
