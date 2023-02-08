@@ -17,8 +17,8 @@ sheep_pic.style.display = "none";
 // add event listener for window load 
 // will create the pet on the page
 window.addEventListener("load", (event) => {
-    // test
-    console.log("test");
+   
+    // console.log("test");
 
     
     // create out pet based on userSettings info
@@ -26,7 +26,6 @@ window.addEventListener("load", (event) => {
     {
         // create a sheep
         const myPet = new Sheep(userSettings.name,999,999,999,999)
-
         
     }
 
@@ -217,7 +216,9 @@ class KingKong extends BasePet {
 
 //
 const timingFunction = () => {
-    window.setTimeout(() => {
+    window.setInterval(() => {
+
+        console.log("time tick")
 
         //in here we change the common values for pets
         myPet.currentHealth -= 10;
@@ -231,11 +232,11 @@ const timingFunction = () => {
 
         // call the function to update the html/styles
 
-        // start timer
-        timingFunction();
+       
     },1000); // every 1 second
 }
-
+ // start timer
+ timingFunction();
 
 
 
