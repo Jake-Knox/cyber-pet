@@ -1,4 +1,4 @@
-import { Clamp } from "./app.js";
+import { Clamp, userSettings } from "./app.js";
 
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
@@ -12,6 +12,25 @@ godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
 // sets pictures to hidden as default
+
+
+// add event listener for window load 
+// will create the pet on the page
+window.addEventListener("load", (event) => {
+    // test
+    console.log("test");
+
+    
+    // create out pet based on userSettings info
+    if(userSettings.petType == "eSheep")
+    {
+        // create a sheep
+        const myPet = new Sheep(userSettings.name,999,999,999,999)
+    }
+
+    
+})
+
 
 godzilla_button.addEventListener("click", ()=> {
     if (godzilla_pic.style.display == "none") {
@@ -66,6 +85,8 @@ sheep_button.addEventListener("click", ()=> {
         sheep_button.style.display = "block";
     }
 })
+
+
 
 // each button shows its own pic and hides itself, shows other buttons
 
@@ -190,4 +211,41 @@ class KingKong extends BasePet {
 
 // const healthBar=getElementById("healthbar");
 
+// call the function to update the html/styles
+
+//
+const timingFunction = () => {
+    window.setTimeout(() => {
+
+        //in here we change the common values for pets
+        myPet.currentHealth -= 10;
+        myPet.currentHunger -= 10;
+        myPet.currentHappiness -= 10;
+
+
+        // if/switch for pet type to also lower 
+        // pet specific variables like charge for sheep
+
+
+        // call the function to update the html/styles
+
+        // start timer
+        timingFunction();
+    },1000); // every 1 second
+}
+
+
+
+
+// const healthBar=getElementById("healthbar");
 // healthBar.style.width=( (currentHealth / maxHealth) * 100)vw;
+
+// const healthBar=getElementById("hungerbar");
+// hungerBar.style.width=( (currentHunger / maxHunger) * 100)vw;
+
+// const thirstBar=getElementById("thirstbar");
+// thirstBar.style.width=( (currentThirst / maxThirst) * 100)vw;
+
+// const happinessBar=getElementById("happinessbar");
+// happinessBar.style.width=( (currentHappiness / maxHappiness) * 100)vw;
+
