@@ -47,7 +47,6 @@ petChangeTypeBox.addEventListener("change", (event) => {
     petChangePreview.src = previewImages[petType];
     // Updates user settings
     currentUserSettings.petType = petType;
-    console.log(userSettings.petType);
 })
 
 petCreationButton.addEventListener("click", () => {

@@ -1,6 +1,5 @@
-import { userSettings } from "./app.js"
-
-
+import { userSettings } from "./app.js";
+import { Clamp } from "./app.js";
 
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
@@ -72,17 +71,6 @@ sheep_button.addEventListener("click", ()=> {
 
 
 // each button shows its own pic and hides itself, shows other buttons
-
-
-/**
- * Makes sure the number is never lower than min or higher than max
- * @param num Your number value.
- * @param min The minimum value the number can be.
- * @param max The maximum value the number can be.
- */
-const Clamp = (num, min, max) => {
-    return Math.min(Math.max(num, min), max);
-}
 
 class BasePet {
     currentHealth = 999;
@@ -180,10 +168,7 @@ class Sheep extends BasePet {
     addToCharge(value){
         this.currentCharge = Clamp(this.currentCharge + value, 0, this.maxCharge)
     }
-        
 }
-
-
 
 
 // const healthBar=getElementById("healthbar");
