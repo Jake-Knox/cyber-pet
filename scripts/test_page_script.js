@@ -1,4 +1,4 @@
-import { Clamp, userSettings } from "./app.js";
+import { Clamp, userSettings, petTypeEnum } from "./app.js";
 
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
@@ -22,13 +22,11 @@ window.addEventListener("load", (event) => {
 
     
     // create out pet based on userSettings info
-    if(userSettings.petType == "eSheep")
+    if(userSettings.petType == petTypeEnum.electricSheep)
     {
         // create a sheep
         const myPet = new Sheep(userSettings.name,999,999,999,999)
     }
-
-    
 })
 
 

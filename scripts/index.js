@@ -1,4 +1,4 @@
-import { userSettings } from "./app.js" 
+import { userSettings, petTypeEnum } from "./app.js" 
 
 // Pet changing
 const petNameP = document.getElementById("pet_name")
@@ -20,7 +20,7 @@ const previewImages = {
 
 const currentUserSettings = {
     name: "",
-    petType: "",
+    petType: petTypeEnum.godzilla,
 }
 
 nameChangeButton.addEventListener("click", () => {
@@ -46,7 +46,17 @@ petChangeTypeBox.addEventListener("change", (event) => {
     const petType = event.target.value.toLowerCase();
     petChangePreview.src = previewImages[petType];
     // Updates user settings
-    currentUserSettings.petType = petType;
+    switch(petType) {
+        case "godzilla":
+            currentUserSettings.petType = petTypeEnum.godzilla;
+            break;
+        case "king kong":
+            currentUserSettings.petType = petTypeEnum.kingKong;
+            break;
+        case "electric sheep":
+            currentUserSettings.petType = petTypeEnum.electricSheep;
+            break;
+    }
 })
 
 petCreationButton.addEventListener("click", () => {
