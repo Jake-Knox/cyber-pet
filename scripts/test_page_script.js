@@ -14,6 +14,17 @@ kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
 // sets pictures to hidden as default
 
+
+// add event listener for window load 
+// will create the pet on the page
+window.addEventListener("load", (event) => {
+    // test
+    console.log("test");
+
+    
+})
+
+
 godzilla_button.addEventListener("click", ()=> {
     if (godzilla_pic.style.display == "none") {
         godzilla_pic.style.display = "block";
