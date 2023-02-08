@@ -22,6 +22,9 @@ window.addEventListener("load", (event) => {
 
     
     // create out pet based on userSettings info
+
+    const specificPetBar = document.createElement();
+
     if(userSettings.petType == petTypeEnum.electricSheep)
     {
         // create a sheep

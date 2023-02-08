@@ -141,3 +141,26 @@ p {
     margin: 0px 0px 0px 0px;
 }
 
+
+#event_log{
+    height: 40vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+
+    border: 1px red solid;
+
+}
+#events_list{
+    height: 90%;
+    width: 90%;
+    border: 1px black solid;
+    list-style-type: none;
+}
+#events_list li{
+    border-bottom: 1px green solid;
+    
+}
