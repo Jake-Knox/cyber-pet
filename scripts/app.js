@@ -14,9 +14,4 @@ const petTypeEnum = {
     electricSheep: 300,
 }
 
-const userSettings = {
-    name: "",
-    petType: petTypeEnum.godzilla,
-}
-
-export { userSettings, Clamp, petTypeEnum };
+export { Clamp, petTypeEnum };

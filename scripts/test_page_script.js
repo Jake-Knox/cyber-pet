@@ -1,4 +1,4 @@
-import { Clamp, userSettings, petTypeEnum } from "./app.js";
+import { Clamp, petTypeEnum } from "./app.js";
 
 let myPet = null;
 
@@ -9,6 +9,9 @@ const sheep_pic=document.getElementById("sheep");
 const godzilla_button=document.getElementById("godzilla_button");
 const kong_button=document.getElementById("kong_button");
 const sheep_button=document.getElementById("sheep_button");
+
+const healthBar = document.getElementById("status-bar-health");
+const hungerBar = document.getElementById("status-bar-hunger");
 
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
@@ -27,27 +30,26 @@ window.addEventListener("load", (event) => {
 
     //const specificPetBar = document.createElement();
 
-    console.log(userSettings.petType);
     const petType = localStorage.getItem("userSettingsPetType");
     if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        myPet = new ElectricSheep(userSettings.name,999,999,999,999)
+        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999)
         
-    }else if(petType == petTypeEnum.electricSheep)
+    }else if(petType == petTypeEnum.kingKong)
     {
         // create a kingkong
-        myPet = new KingKong(userSettings.name,999,999,999,999)
+        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999)
         
-    } else if(petType == petTypeEnum.electricSheep)
+    } else if(petType == petTypeEnum.godzilla)
     {
         // create a godzilla
-        myPet = new Godzilla(userSettings.name,999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
         
     }
     else{
         //option for loading the game page without creating a pet first?
-        myPet = new Godzilla(userSettings.name,999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
     }
 
 
@@ -150,20 +152,20 @@ class BasePet {
 
     // this is a private method, can only be called from inside the class
     // adds health to the pet
-    #addToHealth(value) {
+    addToHealth(value) {
         // Adds to the health and makes sures its never above the max health
         this.currentHealth = Clamp(this.currentHealth + value, 0, this.maxHealth);
     }
 
     // this is a private method
     // adds hunger to the pet
-    #addToHunger(value) {
+    addToHunger(value) {
         // Adds to the hunger and makes sure its never above max hunger
         this.currentHunger = Clamp(this.currentHunger + value, 0, this.maxHunger);
     }
 
     // add happiness to the pet
-    #addToHappiness(value) {
+    addToHappiness(value) {
         // Adds to the happiness and makes sure its never above max happiness
         this.currentHappiness = Clamp(this.currentHappiness + value, 0, this.maxHappiness)
     }
@@ -258,7 +260,8 @@ class Godzilla extends BasePet {
 //
 const timingFunction = () => {
     window.setInterval(() => {
-        myPet.takeDamage(500);
+        myPet.takeDamage(50);
+        myPet.addToHunger(-10);
         console.log(myPet)
        
 
@@ -267,20 +270,13 @@ const timingFunction = () => {
 }
 
 const updateStatusBars = () => {
-    const healthBar = document.getElementById("status-bar-health");
     healthBar.style.width=`${(myPet.currentHealth / myPet.maxHealth) * 100}%`;
+    hungerBar.style.width=`${(myPet.currentHunger / myPet.maxHunger) * 100}%`;
 }
 
-
-
-
-
-// const healthBar=getElementById("hungerbar");
-// hungerBar.style.width=( (currentHunger / maxHunger) * 100)vw;
 
 // const thirstBar=getElementById("thirstbar");
 // thirstBar.style.width=( (currentThirst / maxThirst) * 100)vw;
 
 // const happinessBar=getElementById("happinessbar");
 // happinessBar.style.width=( (currentHappiness / maxHappiness) * 100)vw;
-
