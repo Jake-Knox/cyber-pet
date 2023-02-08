@@ -152,4 +152,4 @@ class BasePet {
 
 // const healthBar=getElementById("healthbar");
 
-// healthBar.style.width=( (currentHealth / maxHealth) * 100)vw
+// healthBar.style.width=( (currentHealth / maxHealth) * 100)vw;
