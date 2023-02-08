@@ -22,6 +22,14 @@ window.addEventListener("load", (event) => {
     console.log("test");
 
     
+    // create out pet based on userSettings info
+    if(userSettings.petType == "eSheep")
+    {
+        // create a sheep
+        const myPet = new Sheep(userSettings.name,999,999,999,999)
+    }
+
+    
 })
 
 
@@ -180,6 +188,33 @@ class Sheep extends BasePet {
         this.currentCharge = Clamp(this.currentCharge + value, 0, this.maxCharge)
     }
 }
+
+
+
+// call the function to update the html/styles
+
+//
+const timingFunction = () => {
+    window.setTimeout(() => {
+
+        //in here we change the common values for pets
+        myPet.currentHealth -= 10;
+        myPet.currentHunger -= 10;
+        myPet.currentHappiness -= 10;
+
+
+        // if/switch for pet type to also lower 
+        // pet specific variables like charge for sheep
+
+
+        // call the function to update the html/styles
+
+        // start timer
+        timingFunction();
+    },1000); // every 1 second
+}
+
+
 
 
 // const healthBar=getElementById("healthbar");
