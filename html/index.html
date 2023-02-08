@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">  
+    <link rel="stylesheet" href="../styles/index.css"> 
+    <link rel="stylesheet" href="../styles/test_page_style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="index.html" class="navbar_item"><div >
+                index
+            </div></a>
+            <a href="test_page.html" class="navbar_item"><div >
+                test
+            </div></a>
+            <a href="about.html" class="navbar_item"><div >
+                about
+            </div></a>
+        </div>
+    </div>
+
+    <div id="pet-creation-container-wrapper">
+        <div id="pet-creation-container">
+            <div id="pet-creation-title-text-wrapper">
+                <h1>CYBER PET</h1>
+                <h2>Create your pet :)</h2>
+            </div>
+            <div id="pet-creation-selector-wrapper">
+                <div id="pet-creation-info">
+                    <p>Name</p>
+                    <p id="pet_name">My pet</p>
+                    <input type="button" value="change name" id="name_change_button">
+                    <div id="name_change">
+                        <input id="name_change_input" type="text">
+                        <input id="name_change_submit" type="button" value="change">
+                    </div>
+
+                    <p>Pet</p>
+                    <select name="Pet" id="pet-selection-box">
+                        <option value="Godzilla">Godzilla</option>
+                        <option value="King Kong">King Kong</option>
+                        <option value="Electric Sheep">Electric Sheep</option>
+                    </select>
+                </div>
+                <div id="pet-creation-preview">
+                    <img id="pet-creation-preview-img" src="../images/godzilla.jpg">
+                </div>
+            </div>
+            <div id="pet-creation-submit-button-wrapper">
+                <input type="button" value="CREATE PET" id="pet-creation-submit-button">
+            </div>
+        </div>
+    </div>
+<script type="module" src="../scripts/index.js"></script>
+<script type="module" src="../scripts/app.js"></script>
+</body>
+</html>
+
