@@ -150,6 +150,36 @@ class BasePet {
     }
 }
 
+// sheep class
+class Sheep extends BasePet {
+    // tring to be consistent with naming conventions from earlier on 
+    // and comment :)
+
+    currentCharge = 999;
+
+    constructor(name, maxHealth, maxHunger, maxHappines, maxCharge) {
+        super(name, maxHealth, maxHunger, maxHappines)
+
+        this.maxCharge = maxCharge;
+        this.currentCharge = maxCharge;
+    }
+
+    charge(){
+        
+        // do something when charged
+        
+    }
+
+    // function for sheep only to add charge 
+    addToCharge(value){
+        this.currentCharge = Clamp(this.curr + value, 0, this.maxCharge)
+    }
+        
+}
+
+
+
+
 // const healthBar=getElementById("healthbar");
 
 // healthBar.style.width=( (currentHealth / maxHealth) * 100)vw
