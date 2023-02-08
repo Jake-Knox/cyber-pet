@@ -27,6 +27,8 @@ window.addEventListener("load", (event) => {
     {
         // create a sheep
         const myPet = new Sheep(userSettings.name,999,999,999,999)
+
+        
     }
 
     
