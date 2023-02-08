@@ -1,5 +1,4 @@
-import { userSettings } from "./app.js";
-import { Clamp } from "./app.js";
+import { Clamp, userSettings } from "./app.js";
 
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
@@ -192,6 +191,27 @@ class Sheep extends BasePet {
 }
 
 
+class KingKong extends BasePet {
+
+    currentPowerness = 999;
+    constructor(name, maxHealth, maxHunger, maxHappines, maxPowerness) {
+        super(name, maxHealth, maxHunger, maxHappines);
+
+        this.maxPowerness = maxPowerness;
+        this.currentPowerness = maxPowerness;
+    }
+
+    poweredUp() {
+        // do something when powered up
+    }
+
+    // Adds to the power and makes sure it never goes below 0 or above the max powerness
+    addToPower(value) {
+        this.currentPowerness = Clamp(this.currentPowerness + value, 0, this.maxPowerness);
+    }
+}
+
+// const healthBar=getElementById("healthbar");
 
 // call the function to update the html/styles
 
