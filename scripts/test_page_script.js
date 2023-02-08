@@ -1,3 +1,7 @@
+import { userSettings } from "./app.js"
+
+
+
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
@@ -64,6 +68,8 @@ sheep_button.addEventListener("click", ()=> {
         sheep_button.style.display = "block";
     }
 })
+
+
 
 // each button shows its own pic and hides itself, shows other buttons
 
