@@ -11,6 +11,8 @@ const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
 const thirstBar = document.getElementById("status-bar-thirst");
 const happinessBar = document.getElementById("status-bar-happiness");
+const uniqueBar = document.getElementById("status-bar-unique-ability");
+const uniqueBarTitle = document.getElementById("unique-ability-title");
 
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
@@ -40,8 +42,12 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "none";
         sheep_pic.style.display = "block";
         rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "Charge"
+        uniqueBar.style.backgroundColor = "rgb(43, 93, 255)";
         
-    }else if(petType == petTypeEnum.kingKong)
+    }
+    else if(petType == petTypeEnum.kingKong)
     {
         // create a kingkong
         myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999)
@@ -50,8 +56,12 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "Rage"
+        uniqueBar.style.backgroundColor = "rgb(255, 53, 38)";
         
-    } else if(petType == petTypeEnum.godzilla)
+    } 
+    else if(petType == petTypeEnum.godzilla)
     {
         // create a godzilla
         myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
@@ -60,6 +70,9 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "Radiation"
+        uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
         
     }
     else{
@@ -70,6 +83,9 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "Radiation"
+        uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
 
 
@@ -246,6 +262,7 @@ const timingFunction = () => {
 }
 
 const updateStatusBars = () => {
+    // Updates the width by getting the percentage of the max health
     healthBar.style.width=`${(myPet.currentHealth / myPet.maxHealth) * 100}%`;
     hungerBar.style.width=`${(myPet.currentHunger / myPet.maxHunger) * 100}%`;
     thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
