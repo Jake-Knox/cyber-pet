@@ -1,4 +1,3 @@
-
 /**
  * Makes sure the number is never lower than min or higher than max
  * @param num Your number value.
@@ -80,3 +79,4 @@ class BasePet {
         // do something on pet death
     }
 }
+
