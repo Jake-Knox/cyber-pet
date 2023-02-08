@@ -198,7 +198,9 @@ class BasePet {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rip_pic.requestFullscreen;
         document.getElementById("reaperAudio").play();
+        document.exitFullscreen;
     }
 }
 
