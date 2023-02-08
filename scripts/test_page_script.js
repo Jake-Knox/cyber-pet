@@ -169,5 +169,14 @@ class Sheep extends BasePet {
 
 
 // const healthBar=getElementById("healthbar");
-
 // healthBar.style.width=( (currentHealth / maxHealth) * 100)vw;
+
+// const healthBar=getElementById("hungerbar");
+// hungerBar.style.width=( (currentHunger / maxHunger) * 100)vw;
+
+// const thirstBar=getElementById("thirstbar");
+// thirstBar.style.width=( (currentThirst / maxThirst) * 100)vw;
+
+// const happinessBar=getElementById("happinessbar");
+// happinessBar.style.width=( (currentHappiness / maxHappiness) * 100)vw;
+
