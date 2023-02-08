@@ -1,4 +1,4 @@
-import { userSettings, petTypeEnum } from "./app.js" 
+import { petTypeEnum } from "./app.js" 
 
 // Pet changing
 const petNameP = document.getElementById("pet_name")
