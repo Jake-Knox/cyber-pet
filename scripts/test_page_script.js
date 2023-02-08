@@ -1,5 +1,7 @@
 import { Clamp, userSettings, petTypeEnum } from "./app.js";
 
+let myPet = null;
+
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
@@ -23,27 +25,29 @@ window.addEventListener("load", (event) => {
     
     // create out pet based on userSettings info
 
-    const specificPetBar = document.createElement();
+    //const specificPetBar = document.createElement();
 
-    if(userSettings.petType == petTypeEnum.electricSheep)
+    console.log(userSettings.petType);
+    const petType = localStorage.getItem("userSettingsPetType");
+    if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        const myPet = new ElectricSheep(userSettings.name,999,999,999,999)
+        myPet = new ElectricSheep(userSettings.name,999,999,999,999)
         
-    }else if(userSettings.petType == petTypeEnum.electricSheep)
+    }else if(petType == petTypeEnum.electricSheep)
     {
         // create a kingkong
-        const myPet = new KingKong(userSettings.name,999,999,999,999)
+        myPet = new KingKong(userSettings.name,999,999,999,999)
         
-    } else if(userSettings.petType == petTypeEnum.electricSheep)
+    } else if(petType == petTypeEnum.electricSheep)
     {
         // create a godzilla
-        const myPet = new Godzilla(userSettings.name,999,999,999,999)
+        myPet = new Godzilla(userSettings.name,999,999,999,999)
         
     }
     else{
         //option for loading the game page without creating a pet first?
-        const myPet = new Godzilla(userSettings.name,999,999,999,999)
+        myPet = new Godzilla(userSettings.name,999,999,999,999)
     }
 
 
@@ -129,6 +133,7 @@ class BasePet {
         // sets up the happiness
         this.maxHappiness = maxHappiness;
         this.currentHappiness = maxHappiness;
+        this.isDead = false;
     }
 
     feed() {
@@ -147,7 +152,7 @@ class BasePet {
     // adds health to the pet
     #addToHealth(value) {
         // Adds to the health and makes sures its never above the max health
-        this.currentHealth = Clamp(this.currentHealth + value, -1, this.maxHealth);
+        this.currentHealth = Clamp(this.currentHealth + value, 0, this.maxHealth);
     }
 
     // this is a private method
@@ -166,7 +171,7 @@ class BasePet {
     // removes health from the pet
     takeDamage(value) {
         // removes the value from the health and makes sure it never goes below -1
-        this.currentHealth = Clamp(this.currentHealth - value, -1, this.maxHealth);
+        this.currentHealth = Clamp(this.currentHealth - value, 0, this.maxHealth);
         
         // if the health is lower than 0 after we removed the health, then die
         if(this.currentHealth <= 0) {
@@ -177,7 +182,8 @@ class BasePet {
     // private method
     // called when the pet dies
     #die() {
-        // do something on pet death
+        this.isDead = true;
+        console.log("PET IS DEAD")
     }
 }
 
@@ -252,31 +258,22 @@ class Godzilla extends BasePet {
 //
 const timingFunction = () => {
     window.setInterval(() => {
-
-        console.log("time tick")
-
-        //in here we change the common values for pets
-        myPet.currentHealth -= 10;
-        myPet.currentHunger -= 10;
-        myPet.currentHappiness -= 10;
-
-
-        // if/switch for pet type to also lower 
-        // pet specific variables like charge for sheep
-
-
-        // call the function to update the html/styles
-
+        myPet.takeDamage(500);
+        console.log(myPet)
        
+
+        updateStatusBars();
     },1000); // every 1 second
+}
+
+const updateStatusBars = () => {
+    const healthBar = document.getElementById("status-bar-health");
+    healthBar.style.width=`${(myPet.currentHealth / myPet.maxHealth) * 100}%`;
 }
 
 
 
 
-
-// const healthBar=getElementById("healthbar");
-// healthBar.style.width=( (currentHealth / maxHealth) * 100)vw;
 
 // const healthBar=getElementById("hungerbar");
 // hungerBar.style.width=( (currentHunger / maxHunger) * 100)vw;
