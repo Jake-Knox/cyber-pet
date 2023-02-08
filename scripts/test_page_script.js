@@ -7,10 +7,6 @@ const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
 const rip_pic=document.getElementById("rip");
 
-const godzilla_button=document.getElementById("godzilla_button");
-const kong_button=document.getElementById("kong_button");
-const sheep_button=document.getElementById("sheep_button");
-
 const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
 const thirstBar = document.getElementById("status-bar-thirst");
@@ -38,92 +34,48 @@ window.addEventListener("load", (event) => {
     if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
+        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999);
+        // show sheep, hide other pictures
+        godzilla_pic.style.display = "none";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "block";
+        rip_pic.style.display = "none";
         
     }else if(petType == petTypeEnum.kingKong)
     {
         // create a kingkong
-        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
+        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        // show kong, hide other pictures
+        godzilla_pic.style.display = "none";
+        kong_pic.style.display = "block";
+        sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         
     } else if(petType == petTypeEnum.godzilla)
     {
         // create a godzilla
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        // show godzilla, hide other pictures
+        godzilla_pic.style.display = "block";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         
     }
     else{
         //option for loading the game page without creating a pet first?
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        // show godzilla, hide other pictures
+        godzilla_pic.style.display = "block";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
     }
 
 
     timingFunction();
 })
 
-
-godzilla_button.addEventListener("click", ()=> {
-    if (godzilla_pic.style.display == "none") {
-        godzilla_pic.style.display = "block";
-        kong_pic.style.display = "none";
-        sheep_pic.style.display = "none";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "none";
-        kong_button.style.display = "block";
-        sheep_button.style.display = "block";
-    } else {
-        godzilla_pic.style.display = "none";
-        kong_pic.style.display = "none";
-        sheep_pic.style.display = "none";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "block";
-        kong_button.style.display = "block";
-        sheep_button.style.display = "block";
-    }
-})
-
-kong_button.addEventListener("click", ()=> {
-    if (kong_pic.style.display == "none") {
-        godzilla_pic.style.display = "none";
-        kong_pic.style.display = "block";
-        sheep_pic.style.display = "none";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "block";
-        kong_button.style.display = "none";
-        sheep_button.style.display = "block";
-    } else {
-        godzilla_pic.style.display = "none";
-        kong_pic.style.display = "none";
-        sheep_pic.style.display = "none";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "block";
-        kong_button.style.display = "block";
-        sheep_button.style.display = "block";
-    }
-})
-
-sheep_button.addEventListener("click", ()=> {
-    if (sheep_pic.style.display == "none") {
-        godzilla_pic.style.display = "none";
-        kong_pic.style.display = "none";
-        sheep_pic.style.display = "block";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "block";
-        kong_button.style.display = "block";
-        sheep_button.style.display = "none";
-    } else {
-        godzilla_pic.style.display = "none";
-        kong_pic.style.display = "none";
-        sheep_pic.style.display = "none";
-        rip_pic.style.display = "none";
-        godzilla_button.style.display = "block";
-        kong_button.style.display = "block";
-        sheep_button.style.display = "block";
-    }
-})
-
-
-
-// each button shows its own pic and hides itself, shows other buttons
 
 class BasePet {
     currentHealth = 999;
