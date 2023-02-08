@@ -5,6 +5,7 @@ let myPet = null;
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
+const rip_pic=document.getElementById("rip");
 
 const godzilla_button=document.getElementById("godzilla_button");
 const kong_button=document.getElementById("kong_button");
@@ -13,6 +14,7 @@ const sheep_button=document.getElementById("sheep_button");
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
+rip_pic.style.display = "none";
 // sets pictures to hidden as default
 
 
@@ -60,6 +62,7 @@ godzilla_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "none";
         kong_button.style.display = "block";
         sheep_button.style.display = "block";
@@ -67,6 +70,7 @@ godzilla_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "block";
         kong_button.style.display = "block";
         sheep_button.style.display = "block";
@@ -78,6 +82,7 @@ kong_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "block";
         kong_button.style.display = "none";
         sheep_button.style.display = "block";
@@ -85,6 +90,7 @@ kong_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "block";
         kong_button.style.display = "block";
         sheep_button.style.display = "block";
@@ -96,6 +102,7 @@ sheep_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "block";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "block";
         kong_button.style.display = "block";
         sheep_button.style.display = "none";
@@ -103,6 +110,7 @@ sheep_button.addEventListener("click", ()=> {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rip_pic.style.display = "none";
         godzilla_button.style.display = "block";
         kong_button.style.display = "block";
         sheep_button.style.display = "block";
@@ -184,6 +192,10 @@ class BasePet {
     #die() {
         this.isDead = true;
         console.log("RIP PET IS DEAD");
+        rip_pic.style.display = "block";
+        godzilla_pic.style.display = "none";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "none";
         document.getElementById("reaperAudio").play();
     }
 }
@@ -259,7 +271,7 @@ class Godzilla extends BasePet {
 //
 const timingFunction = () => {
     window.setInterval(() => {
-        myPet.takeDamage(500);
+        myPet.takeDamage(50);
         console.log(myPet)
        
 
