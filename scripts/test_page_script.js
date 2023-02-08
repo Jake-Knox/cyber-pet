@@ -26,6 +26,8 @@ window.addEventListener("load", (event) => {
     {
         // create a sheep
         const myPet = new Sheep(userSettings.name,999,999,999,999)
+
+        
     }
 })
 
@@ -94,7 +96,7 @@ class BasePet {
     currentHappiness = 999;
 
     // Setting up the main values of the pet
-    constructor(name, maxHealth, maxHunger, maxHappines) {
+    constructor(name, maxHealth, maxHunger, maxHappiness) {
         this.name = name;
 
         // sets up the health
@@ -106,8 +108,8 @@ class BasePet {
         this.currentHunger = maxHunger;
 
         // sets up the happiness
-        this.maxHappiness = maxHappines;
-        this.currentHappiness = maxHappines;
+        this.maxHappiness = maxHappiness;
+        this.currentHappiness = maxHappiness;
     }
 
     feed() {
@@ -167,8 +169,8 @@ class Sheep extends BasePet {
 
     currentCharge = 999;
 
-    constructor(name, maxHealth, maxHunger, maxHappines, maxCharge) {
-        super(name, maxHealth, maxHunger, maxHappines)
+    constructor(name, maxHealth, maxHunger, maxHappiness, maxCharge) {
+        super(name, maxHealth, maxHunger, maxHappiness)
 
         this.maxCharge = maxCharge;
         this.currentCharge = maxCharge;
@@ -190,8 +192,8 @@ class Sheep extends BasePet {
 class KingKong extends BasePet {
 
     currentPowerness = 999;
-    constructor(name, maxHealth, maxHunger, maxHappines, maxPowerness) {
-        super(name, maxHealth, maxHunger, maxHappines);
+    constructor(name, maxHealth, maxHunger, maxHappiness, maxPowerness) {
+        super(name, maxHealth, maxHunger, maxHappiness);
 
         this.maxPowerness = maxPowerness;
         this.currentPowerness = maxPowerness;
@@ -207,7 +209,24 @@ class KingKong extends BasePet {
     }
 }
 
-// const healthBar=getElementById("healthbar");
+class Godzilla extends BasePet {
+
+    currentRadiation = 999;
+    constructor(name, maxHealth, maxHunger, maxHappiness, maxRadiation) {
+        super(name, maxHealth, maxHunger, maxHappiness);
+
+        this.maxRadiation = maxRadiation;
+        this.currentRadiation = maxRadiation
+    }
+
+    nuclearBeam(){
+        // fire nuclear beam when max radiation
+    }
+
+    addToRadiation(value) {
+        this.currentRadiation = Clamp(this.currentRadiation + value, 0, this.maxRadiation);
+    }
+}
 
 // call the function to update the html/styles
 
