@@ -258,6 +258,7 @@ const timingFunction = () => {
     },1000); // every 1 second
 }
 
+// As the happiness, hunger and thirst get lower, the pet will take more damage
 const calculateDamage = () => {
     const hungerPercentage = (myPet.currentHunger / myPet.maxHunger) * 100;
     const thirstPercetange = (myPet.currentThirst / myPet.maxThirst) * 100;
