@@ -183,7 +183,8 @@ class BasePet {
     // called when the pet dies
     #die() {
         this.isDead = true;
-        console.log("PET IS DEAD")
+        console.log("RIP PET IS DEAD");
+        document.getElementById("reaperAudio").play();
     }
 }
 
