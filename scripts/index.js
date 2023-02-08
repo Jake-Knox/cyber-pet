@@ -10,11 +10,17 @@ const nameChangeSubmit = document.getElementById("name_change_submit")
 // Pet preview stuff
 const petChangeTypeBox = document.getElementById("pet-selection-box");
 const petChangePreview = document.getElementById("pet-creation-preview-img");
+const petCreationButton = document.getElementById("pet-creation-submit-button");
 
 const previewImages = {
     ["godzilla"]: "../images/godzilla.jpg",
     ["king kong"]: "../images/kong.jpg",
     ["electric sheep"]: "../images/sheep.jpg",
+}
+
+const currentUserSettings = {
+    name: "",
+    petType: "",
 }
 
 nameChangeButton.addEventListener("click", () => {
@@ -31,7 +37,7 @@ nameChangeSubmit.addEventListener("click", () => {
     nameChangeButton.style.display = "block"
 
     // Updates user settings
-    userSettings.name = nameChangeInput.value;
+    currentUserSettings.name = nameChangeInput.value;
 })
 
 // Called whenever we change the value
@@ -40,6 +46,12 @@ petChangeTypeBox.addEventListener("change", (event) => {
     const petType = event.target.value.toLowerCase();
     petChangePreview.src = previewImages[petType];
     // Updates user settings
-    userSettings.petType = petType;
+    currentUserSettings.petType = petType;
     console.log(userSettings.petType);
+})
+
+petCreationButton.addEventListener("click", () => {
+    userSettings.name = currentUserSettings.name;
+    userSettings.petType = currentUserSettings.petType;
+    window.location.href = "../html/test_page.html"
 })
