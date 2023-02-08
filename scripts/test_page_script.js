@@ -47,7 +47,7 @@ window.addEventListener("load", (event) => {
     }
 
 
-
+    timingFunction();
 })
 
 
@@ -270,8 +270,8 @@ const timingFunction = () => {
        
     },1000); // every 1 second
 }
- // start timer
- timingFunction();
+
+
 
 
 

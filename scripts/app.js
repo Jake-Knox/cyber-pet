@@ -16,7 +16,7 @@ const petTypeEnum = {
 
 const userSettings = {
     name: "",
-    petType: "",
+    petType: petTypeEnum.godzilla,
 }
 
 export { userSettings, Clamp, petTypeEnum };
