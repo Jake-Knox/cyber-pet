@@ -100,18 +100,23 @@ window.addEventListener("load", (event) => {
 //  BUTTON EVENT LISTENERS
 
 feedButton.addEventListener("click", () => {
-    logEvent("feeding pet");
+    
+    feed();
+
 })
 drinkButton.addEventListener("click", () => {
-    logEvent("drinking pet");
+    
+    drink();
 
 })
 playButton.addEventListener("click", () => {
-    logEvent("playing with pet");
+    
+    play();
 
 })
 cleanButton.addEventListener("click", () => {
-    logEvent("cleaning pet");
+    
+    clean();
 
 })
 
@@ -148,15 +153,25 @@ class BasePet {
 
     feed() {
         // do something when fed
+        logEvent("feeding pet");
     }
 
-    clean() {
-        // do something when cleaned
+    drink() {
+        // do something when drinking
+        logEvent("drinking pet");
     }
 
     play() {
         // do something when played with
+        logEvent("playing with pet");
     }
+
+    clean() {
+        // do something when cleaned        
+        logEvent("cleaning pet");
+    }
+
+    
 
     // modifies health by value given
     modifyHealthByValue(value) {
