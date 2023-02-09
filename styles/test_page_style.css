@@ -9,7 +9,6 @@
 #57402b dark brown
 */
 
-
 * {
     font-family: 'IM Fell English SC', serif;
 }
@@ -34,20 +33,22 @@ p {
     margin: 0px 0px 0px 0px;
 }
 
-
 .navbar {
     width: 100vw;
-    height: 5vh;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    background-color: #aed09e;
+    color: #35492c;
 } 
+
 .navbar_item{
-    height: 100%;
+    height: auto;
     width: calc((100vw)/3);    
-    /* border: 1px solid black; */
+    border: 1px solid black;
     text-align: center;
-    font-size: 2em;
+    font-size: 3em;
     text-decoration: none;
 }
 

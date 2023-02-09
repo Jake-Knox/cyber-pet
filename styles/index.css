@@ -58,7 +58,8 @@
 }
 
 #pet-creation-info {
-    padding-top: 3vw;
+    padding-top: 1vw;
+    padding-bottom: 2vw;
     width: 100%;
     height: auto;
     display: flex;
@@ -97,6 +98,7 @@
     height: 3vw;
     font-size: 2vw;
     background-color: #f1e8a7;
+    border: 2px solid black;
 }
 
 #pet-creation-preview {
