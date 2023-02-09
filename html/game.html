@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../styles/test_page_style.css">
+    <link rel="stylesheet" href="../styles/game.css">
     
     
-    <title>CyberPet Test Page</title>
+    <title>CyberPet Game Page</title>
 </head>
 
 <body id="index_body">
@@ -17,7 +17,7 @@
         <a href="index.html" class="navbar_item"><div >
             pet creator
         </div></a>
-        <a href="test_page.html" class="navbar_item"><div >
+        <a href="game.html" class="navbar_item"><div >
             pet page
         </div></a>
         <a href="about.html" class="navbar_item"><div >
@@ -29,39 +29,31 @@
     <h2 id="petName" class="mainfont">My Pet</h2>
 
     <div id="pet_and_status">
-        
-        <!-- <div id="picture_selector"> -->
-            <!-- <div id="buttons">
-                <button id="godzilla_button">select godzilla</button>
-                <button id="kong_button">select kong</button>
-                <button id="sheep_button">select sheep</button>
-            </div> -->
-            
+                   
         <div id="pictures">
             <img id="godzilla" src="../images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
             <img id="kong" src="../images/kong.jpg" alt="a masterpiece artwork of king kong">
             <img id="sheep" src="../images/sheep.jpg" alt="a truly phenomenal drawing of a sheep">
             <img id="rip" src="../images/rip.jpg" alt="you are dead, RIP">
         </div>
-        <!-- </div> -->
 
-        <div id="status_bar">
-            <p class="status-bar-title">Health</p>
+        <div id="status_bar_box">
+            <p class="status-bar-title">health</p>
             <div id="status-health-bar-wrapper" class="status-bar-holder">
                 <div id="status-bar-health" class="status-bar">
                 </div>
             </div>
-            <p class="status-bar-title">Hunger</p>
+            <p class="status-bar-title">hunger</p>
             <div id="status-hunger-bar-wrapper" class="status-bar-holder">
                 <div id="status-bar-hunger" class="status-bar">
                 </div>
             </div>
-            <p class="status-bar-title">Thirst</p>
+            <p class="status-bar-title">thirst</p>
             <div id="status-thirst-bar-wrapper" class="status-bar-holder">
                 <div id="status-bar-thirst" class="status-bar">
                 </div>
             </div>
-            <p class="status-bar-title">Happiness</p>
+            <p class="status-bar-title">happiness</p>
             <div id="status-happiness-bar-wrapper" class="status-bar-holder">
                 <div id="status-bar-happiness" class="status-bar">
                 </div>
@@ -71,27 +63,20 @@
                 <div id="status-bar-unique-ability" class="status-bar">
                 </div>
             </div>
-            <!-- <br>
-            health <img id="healthbar" src="../images/healthbar.png">
-            <br>
-            hunger <img id="hungerbar" src="../images/hungerbar.png">
-            <br>
-            thirst <img id="thirstbar" src="../images/thirstbar.png">
-            <br>
-            happiness <img id="happinessbar" src="../images/happinessbar.png">
-            <br> -->
+
         </div>
 
     </div>
 
     <div id="toolbar">
-        <div id="feed_button" class="old_a">feed</div>
-        <div id="drink_button"class="old_a">drink</div>
-        <div id="play_button"class="old_a">play</div>
-        <div id="clean_button"class="old_a">clean</div>
+        <div id="feed_button" class="toolbar_button">feed</div>
+        <div id="drink_button"class="toolbar_button">drink</div>
+        <div id="play_button"class="toolbar_button">play</div>
+        <div id="clean_button"class="toolbar_button">clean</div>
+        <div id="kill_button"class="toolbar_button">kill</div>
     </div>
 
-    <h3>MEGA EVENT LOG</h3>
+    <h3>MEGA EVENT LOG:</h3>
     <div id="event_log">
         <ul id="events_list">
             
@@ -100,19 +85,16 @@
 
     <div>
         <p id="p_index" class="mainfont">
-            This is our page to test styles for our cyberpet 
-            <br>
-            <br>
-            So we can work on a separate page from the real one
+        
         </p>
-        </div>
+    </div>
     
     <audio id="reaperAudio" controls>
         <source src="../audio/Blue_Oyster_Cult-(Don't Fear)_The_Reaper.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <script type="module" src="../scripts/test_page_script.js"></script>
+    <script type="module" src="../scripts/game.js"></script>
 </body>
 
 </html>
