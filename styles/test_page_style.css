@@ -14,6 +14,27 @@
     font-family: 'IM Fell English SC', serif;
 }
 
+.mainfont {
+    color:#35492c;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9vw;
+    padding: 0.6vw 1vw 0.6vw 1vw;
+    margin: 0px 0px 0px 0px;
+    position: relative;
+}
+
+p {
+    font-size: 3.3em;
+    padding: 3vw 3vw 3vw 3vw;
+    margin: 0px 0px 0px 0px;
+}
+
+
 .navbar {
     width: 100vw;
     height: 5vh;
@@ -32,31 +53,59 @@
 
 #pet_and_status{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#picture_selector{
-    display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    align-items: center;
 }
 
-#buttons{
+#status_bar {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-size: 3vw;
-}
-
-#status_bar{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    align-items: left;
+    justify-content:space-around;
     font-size: 3vw;
     background-color: #a8896c;
-    width:100vw;
+    width: 100vw;
+    height: 30vw;
+}
+
+.status-bar-title {
+    margin-left: 2vw;
+    font-size: 2vw;
+    padding: 0px 0px 0px 0px;
+}
+
+.status-bar-holder {
+    width: 30%;
+    height: 4vh;
+    margin-left: 2vw;
+    padding-top: 0vh;
+    background-color: rgb(66, 66, 66);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.status-bar {
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 100%;
+    height: 70%;
+}
+
+#status-bar-health {
+    background-color: red;
+}
+
+#status-bar-hunger {
+    background-color: rgb(255,201,14);
+}
+
+#status-bar-thirst {
+    background-color: rgb(153,217,234);
+}
+
+#status-bar-happiness {
+    background-color: rgb(255,174,201);
 }
 
 body{
@@ -114,34 +163,6 @@ body{
     border-style:inset;
 }
 
-/* #index_body {
-    background-image: url(images/church_int_wide.png);
-    background-color: none;
-    background-repeat: no-repeat;
-    background-size: 100vw;
-} */
-
-.mainfont {
-    color:#35492c;
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 9vw;
-    padding: 0.6vw 1vw 0.6vw 1vw;
-    margin: 0px 0px 0px 0px;
-    position: relative;
-}
-
-p {
-    font-size: 3.3em;
-    padding: 3vw 3vw 3vw 3vw;
-    margin: 0px 0px 0px 0px;
-}
-
-
 #event_log{
     height: 40vh;
     width: 100%;
@@ -163,4 +184,8 @@ p {
 #events_list li{
     border-bottom: 1px green solid;
     
+}
+
+#reaperAudio {
+    display:none;
 }

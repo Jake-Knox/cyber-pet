@@ -1,4 +1,4 @@
-import { userSettings, petTypeEnum } from "./app.js" 
+import { petTypeEnum } from "./app.js" 
 
 // Pet changing
 const petNameP = document.getElementById("pet_name")
@@ -60,7 +60,9 @@ petChangeTypeBox.addEventListener("change", (event) => {
 })
 
 petCreationButton.addEventListener("click", () => {
-    userSettings.name = currentUserSettings.name;
-    userSettings.petType = currentUserSettings.petType;
+    // userSettings.name = currentUserSettings.name;
+    // userSettings.petType = currentUserSettings.petType;
     window.location.href = "../html/test_page.html"
+    localStorage.setItem("userSettingsPetName", currentUserSettings.name)
+    localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
