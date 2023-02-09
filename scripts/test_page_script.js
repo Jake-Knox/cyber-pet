@@ -93,6 +93,11 @@ window.addEventListener("load", (event) => {
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
 
+    // will bring in pet name from index to app.js 
+    // -> app.js to here 
+    // -> change h2 text
+    
+
 
     timingFunction();
 })
