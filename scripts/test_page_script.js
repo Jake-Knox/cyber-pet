@@ -29,6 +29,7 @@ kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
 rip_pic.style.display = "none";
 // sets pictures to hidden as default
+const petType = localStorage.getItem("userSettingsPetType");
 
 
 // add event listener for window load 
@@ -40,11 +41,10 @@ window.addEventListener("load", (event) => {
     
     // create out pet based on userSettings info
 
-    const petType = localStorage.getItem("userSettingsPetType");
     if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
-        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999);
+        myPet = new ElectricSheep(localStorage.getItem("userSettingsPetName"),999,999,999,999,100);
         // show sheep, hide other pictures
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
@@ -58,7 +58,7 @@ window.addEventListener("load", (event) => {
     else if(petType == petTypeEnum.kingKong)
     {
         // create a kingkong
-        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show kong, hide other pictures
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "block";
@@ -72,7 +72,7 @@ window.addEventListener("load", (event) => {
     else if(petType == petTypeEnum.godzilla)
     {
         // create a godzilla
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show godzilla, hide other pictures
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
@@ -85,7 +85,7 @@ window.addEventListener("load", (event) => {
     }
     else{
         //option for loading the game page without creating a pet first?
-        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show godzilla, hide other pictures
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
@@ -256,7 +256,7 @@ class ElectricSheep extends BasePet {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness)
 
         this.maxCharge = maxCharge;
-        this.currentCharge = maxCharge;
+        this.currentCharge = 0;
     }
 
     charge(){
@@ -279,7 +279,7 @@ class KingKong extends BasePet {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
 
         this.maxPowerness = maxPowerness;
-        this.currentPowerness = maxPowerness;
+        this.currentPowerness = 0;
     }
 
     poweredUp() {
@@ -299,7 +299,7 @@ class Godzilla extends BasePet {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
 
         this.maxRadiation = maxRadiation;
-        this.currentRadiation = maxRadiation
+        this.currentRadiation = 0;
     }
 
     nuclearBeam(){
@@ -320,6 +320,14 @@ const timingFunction = () => {
         myPet.modifyThirstByValue(-10);
         myPet.modifyHappinessByValue(-15);
         myPet.takeDamage(calculateDamage());
+
+        if(petType == petTypeEnum.godzilla)  {
+            myPet.addToRadiation(2);
+        } else if (petType == petTypeEnum.kingKong) {
+            myPet.addToPower(2);
+        } else if (petType == petTypeEnum.electricSheep) {
+            myPet.addToCharge(2);
+        }
 
         // logEvent("test")
 
@@ -347,6 +355,16 @@ const updateStatusBars = () => {
     hungerBar.style.width=`${(myPet.currentHunger / myPet.maxHunger) * 100}%`;
     thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
     happinessBar.style.width = `${(myPet.currentHappiness / myPet.maxHappiness) * 100}%`;
+
+
+
+    if(petType == petTypeEnum.godzilla) {
+        uniqueBar.style.width = `${(myPet.currentRadiation / myPet.maxRadiation) * 100}%`;
+    } else if (petType == petTypeEnum.kingKong) {
+        uniqueBar.style.width = `${(myPet.currentPowerness / myPet.maxPowerness) * 100}%`;
+    } else if (petType == petTypeEnum.electricSheep) {
+        uniqueBar.style.width = `${(myPet.currentCharge / myPet.maxCharge) * 100}%`;
+    }
 }
 
 
