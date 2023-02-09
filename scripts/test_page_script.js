@@ -14,6 +14,13 @@ const happinessBar = document.getElementById("status-bar-happiness");
 const uniqueBar = document.getElementById("status-bar-unique-ability");
 const uniqueBarTitle = document.getElementById("unique-ability-title");
 
+//buttons
+const feedButton = document.getElementById("feed_button");
+const drinkButton = document.getElementById("drink_button");
+const playButton = document.getElementById("play_button");
+const cleanButton = document.getElementById("clean_button");
+
+
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
@@ -89,6 +96,27 @@ window.addEventListener("load", (event) => {
 
     timingFunction();
 })
+
+//  BUTTON EVENT LISTENERS
+
+feedButton.addEventListener("click", () => {
+    logEvent("feeding pet");
+})
+drinkButton.addEventListener("click", () => {
+    logEvent("drinking pet");
+
+})
+playButton.addEventListener("click", () => {
+    logEvent("playing with pet");
+
+})
+cleanButton.addEventListener("click", () => {
+    logEvent("cleaning pet");
+
+})
+
+
+
 
 
 class BasePet {
