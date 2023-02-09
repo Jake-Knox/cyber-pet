@@ -153,22 +153,29 @@ class BasePet {
 
     feed() {
         // do something when fed
+        this.modifyHungerByValue(10);
         logEvent("feeding pet");
     }
 
     drink() {
         // do something when drinking
         logEvent("drinking pet");
+        this.modifyThirstByValue(10);
     }
 
     play() {
         // do something when played with
         logEvent("playing with pet");
+        this.modifyHappinessByValue(10);
+
     }
 
     clean() {
         // do something when cleaned        
         logEvent("cleaning pet");
+
+        // decide what to do with this button
+        // change to fit pet special moves? - add cleanliness bar?
     }
 
     
@@ -179,16 +186,16 @@ class BasePet {
         this.currentHealth = Clamp(this.currentHealth + value, 0, this.maxHealth);
     }
 
-    // modifies thirst by value given
-    modifyThirstByValue(value) {
-        // Adds to the hunger and makes sure its never above max hunger
-        this.currentThirst = Clamp(this.currentThirst + value, 0, this.maxThirst);
-    }
-
     // modifies hunger by value given
     modifyHungerByValue(value) {
         // Adds to the hunger and makes sure its never above max hunger
         this.currentHunger = Clamp(this.currentHunger + value, 0, this.maxHunger);
+    }
+
+    // modifies thirst by value given
+    modifyThirstByValue(value) {
+        // Adds to the hunger and makes sure its never above max hunger
+        this.currentThirst = Clamp(this.currentThirst + value, 0, this.maxThirst);
     }
 
     // modifies happiness by value given
