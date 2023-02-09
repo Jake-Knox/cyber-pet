@@ -335,7 +335,17 @@ const calculateDamage = () => {
     const thirstDamage = (100 - thirstPercetange) / 7
     const happinessDamage = (100 - happinessPercentage) / 10
 
-    return hungerDamage + thirstDamage + happinessDamage
+    let totalDamage = hungerDamage + thirstDamage + happinessDamage
+    // change 5 when testing
+    if (totalDamage > 5) {
+        // return hungerDamage + thirstDamage + happinessDamage
+        return totalDamage;
+    }
+    else{
+        return 0;
+    }
+    
+    
 }
 
 const updateStatusBars = () => {
