@@ -224,6 +224,11 @@ class BasePet {
         }
     }
 
+    // function to heal - based on takeDamage
+    heal(value) {
+        this.modifyHealthByValue(value) 
+    }
+
     // private method
     // called when the pet dies
     #die() {
