@@ -172,23 +172,32 @@ body{
     justify-content: center;
     justify-content: space-around;
 
-    border: 1px red solid;
+    /* border: 1px red solid; */
 
 }
 #events_list{
     height: 90%;
     width: 90%;
-    border: 1px black solid;
+    border: 1px solid #57402b ;
+    box-shadow: 1px 2px #1c0818;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
-    overflow: scroll;
+
+    /* overflow: scroll; */
+    overflow: hidden;
 }
 #events_list li{
     border-bottom: 1px green solid;
     padding-left: 1vw;
-    
 }
+.event_text{
+    font-size: 2em;
+    padding: 0px; 
+     padding: 1vh, 1vw, 1vh, 1vw; 
+     margin: 0px;
+}
+
 
 #reaperAudio {
     display:none;

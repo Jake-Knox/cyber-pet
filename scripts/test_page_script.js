@@ -96,7 +96,7 @@ window.addEventListener("load", (event) => {
     // will bring in pet name from index to app.js 
     // -> app.js to here 
     // -> change h2 text
-    
+
 
 
     timingFunction();
@@ -356,16 +356,19 @@ const eventLogUL = document.querySelector("#events_list")
 const logEvent = (message) => {
     // create the new message element
     const newLog = document.createElement("li");
-    const logContent = document.createTextNode(message);
-
+    
+    // const logContent = document.(message);
     // add new log to the list - visible on page
-    newLog.appendChild(logContent);
-    eventLogUL.appendChild(newLog);
+    // newLog.appendChild(logContent);
+
+    // eventLogUL.appendChild(newLog); // adds at bottom of log list
+    eventLogUL.prepend(newLog); // adds at top of log
+    newLog.innerHTML = (`<p class="event_text">${message}</p>`)
 
     // set a timeout for each log - x seconds after creation
     window.setTimeout(() => {
         // const firstLog = document.querySelector("#events_list:first-child")
-        const firstLog = document.querySelector("li:first-child")
+        const firstLog = document.querySelector("li:last-child") // remove bottom element
         eventLogUL.removeChild(firstLog)
         console.log("removed first child in list")
     }, 5000); // change lifespan of a single log
