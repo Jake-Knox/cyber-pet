@@ -101,22 +101,22 @@ window.addEventListener("load", (event) => {
 
 feedButton.addEventListener("click", () => {
     
-    feed();
+    myPet.feed();
 
 })
 drinkButton.addEventListener("click", () => {
     
-    drink();
+    myPet.drink();
 
 })
 playButton.addEventListener("click", () => {
     
-    play();
+    myPet.play();
 
 })
 cleanButton.addEventListener("click", () => {
     
-    clean();
+    myPet.clean();
 
 })
 
