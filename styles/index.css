@@ -79,20 +79,6 @@
     font-size: 4vw;
 }
 
-#name_change_input {
-    width: auto;
-    height: 3vw;
-    background-color: #f1e8a7;
-    font-size: 2vw;
-}
-
-#name_change_submit {
-    height: 3vw;
-    width: auto;
-    font-size: 2vw;
-    background-color: #f1e8a7;
-}
-
 #pet-selection-box {
     width: auto;
     height: 3vw;
@@ -112,15 +98,30 @@
     margin: 1vw 0vw 1vw 0vw;
 }
 
+#name_change_button{
+    height: 3vw;
+    width: auto;
+    font-size: 2vw;
+    background-color: #f1e8a7;
+}
+
 #name_change{
     display: flex;
+    /* display: none; */
     position:static;
     height: 5vw;
     width: 20vw;
     background-color: none;
 }
 
-#name_change_button{
+#name_change_input {
+    width: auto;
+    height: 3vw;
+    background-color: #f1e8a7;
+    font-size: 2vw;
+}
+
+#name_change_submit {
     height: 3vw;
     width: auto;
     font-size: 2vw;

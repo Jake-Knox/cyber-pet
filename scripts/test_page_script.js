@@ -20,6 +20,9 @@ const drinkButton = document.getElementById("drink_button");
 const playButton = document.getElementById("play_button");
 const cleanButton = document.getElementById("clean_button");
 
+// pet name
+const petNameTitle = document.getElementById("petName");
+petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
 
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
