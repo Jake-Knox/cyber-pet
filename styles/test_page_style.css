@@ -14,7 +14,7 @@
 }
 
 .mainfont {
-    color:#35492c;
+    color:black;
 }
 
 h1 {
@@ -22,6 +22,16 @@ h1 {
     justify-content: center;
     align-items: center;
     font-size: 9vw;
+    padding: 0.6vw 1vw 0.6vw 1vw;
+    margin: 0px 0px 0px 0px;
+    position: relative;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vw;
     padding: 0.6vw 1vw 0.6vw 1vw;
     margin: 0px 0px 0px 0px;
     position: relative;
@@ -55,34 +65,52 @@ p {
 #pet_and_status{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
+    align-content: center;
+    justify-content: center;
+    /* justify-items: center; */
+    height: 44vw;
+    width: auto;
 }
 
-#status_bar {
+#pictures {
+    height: 40vw;
+    width:auto;
+    padding: 0vw 0vw 0vw 0vw;
+    margin: 0vw 0vw 0vw 0vw;
+}
+
+img{
+    height: 40vw;
+    width:auto;
+}
+
+#status_bar_box {
     display: flex;
     flex-direction: column;
     align-items: left;
     justify-content:space-around;
-    font-size: 3vw;
     background-color: #a8896c;
-    width: 100vw;
-    height: 30vw;
+    width: 40vw;
+    height: 40vw;
+    padding: 0vw 0vw 0vw 0vw;
+    margin: 0vw 0vw 0vw 0vw;
 }
 
 .status-bar-title {
     margin-left: 2vw;
-    font-size: 2vw;
+    font-size: 3vw;
     padding: 0px 0px 0px 0px;
 }
 
 .status-bar-holder {
-    width: 30%;
-    height: 4vh;
+    width: 30vw;
+    height: 3vw;
     margin-left: 2vw;
-    padding-top: 0vh;
+    padding-top: 0vw;
     background-color: rgb(66, 66, 66);
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -131,7 +159,7 @@ body{
     margin: 0px 0px 0px 0px;
 }
 
-.old_a {
+.toolbar_button {
     display:flex;
     align-items: center;
     color: #61b292;
@@ -149,14 +177,14 @@ body{
     min-height: 6vh;
 }
 
-.old_a:hover {
-    color:#61b292;
+.toolbar_button:hover {
+    color:#35492c;
     font-weight: bolder;
     background-color:#a8896c;
     border-color: #a8896c;
 }
 
-.old_a:active {
+.toolbar_button:active {
     color: #35492c;
     background-color: #1c0818;
     border-color: #57402b;
@@ -164,22 +192,32 @@ body{
     border-style:inset;
 }
 
+h3 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 4vw;
+    padding: 0vw 0vw 0vw 0vw;
+    margin: 4vw 0vw 0vw 4vw;
+    position: relative;
+}
+
+
 #event_log{
-    height: 40vh;
+    height: 30vw;
     width: 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
     justify-content: space-around;
-
-    /* border: 1px red solid; */
-
 }
+
 #events_list{
-    height: 90%;
-    width: 90%;
-    border: 1px solid #57402b ;
+    height: 25vw;
+    width: 90vw;
+    border: 1vw #57402b inset;
+    background-color:#a8896c;
     box-shadow: 1px 2px #1c0818;
     list-style-type: none;
     padding: 0px;
