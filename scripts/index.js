@@ -23,11 +23,17 @@ const currentUserSettings = {
     petType: petTypeEnum.godzilla,
 }
 
+// set name change input box and submit button invisible to start
+nameChangeSubmit.style.display = "none";
+nameChangeInput.style.display = "none";
+
 nameChangeButton.addEventListener("click", () => {
     // Shows the popup
     nameDiv.style.display = "block";
     nameChangeInput.value = petNameP.textContent;
-    nameChangeButton.style.display = "none"
+    nameChangeButton.style.display = "none";
+    nameChangeSubmit.style.display = "block";
+    nameChangeInput.style.display = "block";
 })
 
 nameChangeSubmit.addEventListener("click", () => {
