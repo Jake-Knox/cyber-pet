@@ -24,23 +24,19 @@ const cleanButton = document.getElementById("clean_button");
 const petNameTitle = document.getElementById("petName");
 petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
 
+// sets pictures to hidden as default
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
 rip_pic.style.display = "none";
-// sets pictures to hidden as default
+
+// gets the pet type in local storage
 const petType = localStorage.getItem("userSettingsPetType");
 
-
-// add event listener for window load 
-// will create the pet on the page
+// creates the pet when page is loaded
 window.addEventListener("load", (event) => {
    
-    // console.log("test");
-
-    
-    // create out pet based on userSettings info
-
+    // create out pet based on the users settings
     if(petType == petTypeEnum.electricSheep)
     {
         // create a sheep
@@ -96,17 +92,11 @@ window.addEventListener("load", (event) => {
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
 
-    // will bring in pet name from index to app.js 
-    // -> app.js to here 
-    // -> change h2 text
-
-
 
     timingFunction();
 })
 
 //  BUTTON EVENT LISTENERS
-
 feedButton.addEventListener("click", () => {
     
     myPet.feed();
@@ -127,9 +117,6 @@ cleanButton.addEventListener("click", () => {
     myPet.clean();
 
 })
-
-
-
 
 
 class BasePet {
@@ -195,8 +182,6 @@ class BasePet {
         // decide what to do with this button
         // change to fit pet special moves? - add cleanliness bar?
     }
-
-    
 
     // modifies health by value given
     modifyHealthByValue(value) {
@@ -311,9 +296,7 @@ class Godzilla extends BasePet {
     }
 }
 
-// call the function to update the html/styles
-
-//
+// function runs every second, updates pet stats and updates the status bars
 const timingFunction = () => {
     window.setInterval(() => {
         myPet.modifyHungerByValue(-10);
@@ -321,6 +304,7 @@ const timingFunction = () => {
         myPet.modifyHappinessByValue(-15);
         myPet.takeDamage(calculateDamage());
 
+        // Adds to unique stats
         if(petType == petTypeEnum.godzilla)  {
             myPet.addToRadiation(2);
         } else if (petType == petTypeEnum.kingKong) {
@@ -328,8 +312,6 @@ const timingFunction = () => {
         } else if (petType == petTypeEnum.electricSheep) {
             myPet.addToCharge(2);
         }
-
-        // logEvent("test")
 
         console.log(myPet)
         updateStatusBars();
@@ -358,6 +340,7 @@ const updateStatusBars = () => {
 
 
 
+    // Updates the states of the unique bars depending on the pet
     if(petType == petTypeEnum.godzilla) {
         uniqueBar.style.width = `${(myPet.currentRadiation / myPet.maxRadiation) * 100}%`;
     } else if (petType == petTypeEnum.kingKong) {
@@ -394,11 +377,3 @@ const logEvent = (message) => {
         console.log("removed first child in list")
     }, 5000); // change lifespan of a single log
 }
-
-
-
-// const thirstBar=getElementById("thirstbar");
-// thirstBar.style.width=( (currentThirst / maxThirst) * 100)vw;
-
-// const happinessBar=getElementById("happinessbar");
-// happinessBar.style.width=( (currentHappiness / maxHappiness) * 100)vw;
