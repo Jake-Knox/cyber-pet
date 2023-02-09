@@ -14,6 +14,13 @@ const happinessBar = document.getElementById("status-bar-happiness");
 const uniqueBar = document.getElementById("status-bar-unique-ability");
 const uniqueBarTitle = document.getElementById("unique-ability-title");
 
+//buttons
+const feedButton = document.getElementById("feed_button");
+const drinkButton = document.getElementById("drink_button");
+const playButton = document.getElementById("play_button");
+const cleanButton = document.getElementById("clean_button");
+
+
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
@@ -89,6 +96,27 @@ window.addEventListener("load", (event) => {
 
     timingFunction();
 })
+
+//  BUTTON EVENT LISTENERS
+
+feedButton.addEventListener("click", () => {
+    logEvent("feeding pet");
+})
+drinkButton.addEventListener("click", () => {
+    logEvent("drinking pet");
+
+})
+playButton.addEventListener("click", () => {
+    logEvent("playing with pet");
+
+})
+cleanButton.addEventListener("click", () => {
+    logEvent("cleaning pet");
+
+})
+
+
+
 
 
 class BasePet {
@@ -253,6 +281,8 @@ const timingFunction = () => {
         myPet.modifyHappinessByValue(-15);
         myPet.takeDamage(calculateDamage());
 
+        // logEvent("test")
+
         console.log(myPet)
         updateStatusBars();
     },1000); // every 1 second
@@ -278,6 +308,32 @@ const updateStatusBars = () => {
     thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
     happinessBar.style.width = `${(myPet.currentHappiness / myPet.maxHappiness) * 100}%`;
 }
+
+
+// Feature to add an event message to the event log
+// call logEvent - pass in the full message for the log
+// messages are deleted after X (5) seconds from the top of the list
+const eventLogUL = document.querySelector("#events_list")
+// console.log(eventLogUL)
+
+const logEvent = (message) => {
+    // create the new message element
+    const newLog = document.createElement("li");
+    const logContent = document.createTextNode(message);
+
+    // add new log to the list - visible on page
+    newLog.appendChild(logContent);
+    eventLogUL.appendChild(newLog);
+
+    // set a timeout for each log - x seconds after creation
+    window.setTimeout(() => {
+        // const firstLog = document.querySelector("#events_list:first-child")
+        const firstLog = document.querySelector("li:first-child")
+        eventLogUL.removeChild(firstLog)
+        console.log("removed first child in list")
+    }, 5000); // change lifespan of a single log
+}
+
 
 
 // const thirstBar=getElementById("thirstbar");
