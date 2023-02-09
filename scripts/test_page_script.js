@@ -93,6 +93,11 @@ window.addEventListener("load", (event) => {
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
 
+    // will bring in pet name from index to app.js 
+    // -> app.js to here 
+    // -> change h2 text
+    
+
 
     timingFunction();
 })
@@ -100,18 +105,23 @@ window.addEventListener("load", (event) => {
 //  BUTTON EVENT LISTENERS
 
 feedButton.addEventListener("click", () => {
-    logEvent("feeding pet");
+    
+    myPet.feed();
+
 })
 drinkButton.addEventListener("click", () => {
-    logEvent("drinking pet");
+    
+    myPet.drink();
 
 })
 playButton.addEventListener("click", () => {
-    logEvent("playing with pet");
+    
+    myPet.play();
 
 })
 cleanButton.addEventListener("click", () => {
-    logEvent("cleaning pet");
+    
+    myPet.clean();
 
 })
 
@@ -147,16 +157,43 @@ class BasePet {
     }
 
     feed() {
+        if(this.isDead) return;
         // do something when fed
+        this.modifyHungerByValue(10);
+        logEvent("feeding pet");
+
+        updateStatusBars();
     }
 
-    clean() {
-        // do something when cleaned
+    drink() {
+        if(this.isDead) return;
+        // do something when drinking
+        logEvent("drinking pet");
+        this.modifyThirstByValue(10);
+
+        updateStatusBars();
     }
 
     play() {
+        if(this.isDead) return;
         // do something when played with
+        logEvent("playing with pet");
+        this.modifyHappinessByValue(10);
+
+        updateStatusBars();
+
     }
+
+    clean() {
+        if(this.isDead) return;
+        // do something when cleaned        
+        logEvent("cleaning pet");
+
+        // decide what to do with this button
+        // change to fit pet special moves? - add cleanliness bar?
+    }
+
+    
 
     // modifies health by value given
     modifyHealthByValue(value) {
@@ -164,16 +201,16 @@ class BasePet {
         this.currentHealth = Clamp(this.currentHealth + value, 0, this.maxHealth);
     }
 
-    // modifies thirst by value given
-    modifyThirstByValue(value) {
-        // Adds to the hunger and makes sure its never above max hunger
-        this.currentThirst = Clamp(this.currentThirst + value, 0, this.maxThirst);
-    }
-
     // modifies hunger by value given
     modifyHungerByValue(value) {
         // Adds to the hunger and makes sure its never above max hunger
         this.currentHunger = Clamp(this.currentHunger + value, 0, this.maxHunger);
+    }
+
+    // modifies thirst by value given
+    modifyThirstByValue(value) {
+        // Adds to the hunger and makes sure its never above max hunger
+        this.currentThirst = Clamp(this.currentThirst + value, 0, this.maxThirst);
     }
 
     // modifies happiness by value given
