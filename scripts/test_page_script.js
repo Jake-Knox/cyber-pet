@@ -157,6 +157,7 @@ class BasePet {
     }
 
     feed() {
+        if(this.isDead) return;
         // do something when fed
         this.modifyHungerByValue(10);
         logEvent("feeding pet");
@@ -165,6 +166,7 @@ class BasePet {
     }
 
     drink() {
+        if(this.isDead) return;
         // do something when drinking
         logEvent("drinking pet");
         this.modifyThirstByValue(10);
@@ -173,6 +175,7 @@ class BasePet {
     }
 
     play() {
+        if(this.isDead) return;
         // do something when played with
         logEvent("playing with pet");
         this.modifyHappinessByValue(10);
@@ -182,6 +185,7 @@ class BasePet {
     }
 
     clean() {
+        if(this.isDead) return;
         // do something when cleaned        
         logEvent("cleaning pet");
 
