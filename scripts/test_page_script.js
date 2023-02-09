@@ -160,18 +160,24 @@ class BasePet {
         // do something when fed
         this.modifyHungerByValue(10);
         logEvent("feeding pet");
+
+        updateStatusBars();
     }
 
     drink() {
         // do something when drinking
         logEvent("drinking pet");
         this.modifyThirstByValue(10);
+
+        updateStatusBars();
     }
 
     play() {
         // do something when played with
         logEvent("playing with pet");
         this.modifyHappinessByValue(10);
+
+        updateStatusBars();
 
     }
 
