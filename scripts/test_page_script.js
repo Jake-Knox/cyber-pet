@@ -19,6 +19,7 @@ const feedButton = document.getElementById("feed_button");
 const drinkButton = document.getElementById("drink_button");
 const playButton = document.getElementById("play_button");
 const cleanButton = document.getElementById("clean_button");
+const killButton = document.getElementById("kill_button");
 
 // pet name
 const petNameTitle = document.getElementById("petName");
@@ -116,6 +117,12 @@ cleanButton.addEventListener("click", () => {
     
     myPet.clean();
 
+})
+
+killButton.addEventListener("click", ()=> {
+    
+    myPet.takeDamage(99999);
+    
 })
 
 

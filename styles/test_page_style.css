@@ -192,6 +192,23 @@ body{
     border-style:inset;
 }
 
+#kill_button{
+    color: black;
+    background-color: rgb(210, 0, 0);
+    border-color: red;
+}
+
+#kill_button:hover {
+    background-color: red;
+    border-color: rgb(255, 45, 45);
+}
+
+#kill_button:active {
+    background-color: rgb(165, 0, 0);
+    border-color: rgb(210, 0, 0);
+    border-style: inset;
+}
+
 h3 {
     display: flex;
     justify-content: flex-start;
