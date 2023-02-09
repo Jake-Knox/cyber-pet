@@ -180,9 +180,13 @@ body{
     width: 90%;
     border: 1px black solid;
     list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    overflow: scroll;
 }
 #events_list li{
     border-bottom: 1px green solid;
+    padding-left: 1vw;
     
 }
 
