@@ -3,6 +3,7 @@ import { Clamp, petTypeEnum } from "./app.js";
 // main game vars
 let myPet = null;
 let timeSurvived = 0;
+let totalClicks = 0;
 
 // pictures
 const godzilla_pic=document.getElementById("godzilla");
@@ -127,31 +128,33 @@ window.addEventListener("load", (event) => {
     updateStatusBars();
 })
 
+const addToTotalClicks = () => {
+    if (myPet.isDead) return;
+    totalClicks++;
+}
+
 //  BUTTON EVENT LISTENERS
 feedButton.addEventListener("click", () => {
-
+    addToTotalClicks();
     myPet.feed();
 
 })
 drinkButton.addEventListener("click", () => {
-    
+    addToTotalClicks();
     myPet.drink();
-
 })
 playButton.addEventListener("click", () => {
-    
+    addToTotalClicks();
     myPet.play();
-
 })
-uniqueButton.addEventListener("click", () => {
-    
-    // change to unique ability
+uniqueButton.addEventListener("click", () => {  
+    addToTotalClicks();
     myPet.unique();
 
 })
 
 killButton.addEventListener("click", ()=> {
-    
+    // Sets all the bars to 0
     myPet.modifyHungerByValue(-9999);
     myPet.modifyThirstByValue(-9999);
     myPet.modifyHappinessByValue(-9999);
@@ -162,8 +165,15 @@ killButton.addEventListener("click", ()=> {
     } else if (petType == petTypeEnum.electricSheep) {
         myPet.addToCharge(-9999);
     };
+    // Kills the pet
     myPet.takeDamage(99999);
+
+    // Updates the bars
     updateStatusBars();
+
+    // Check for secret achievement
+    addToTotalClicks();
+    checkAchievements();
 })
 
 
@@ -424,14 +434,26 @@ class Achievement {
 
 // Our list of achievements and where we create them
 const AchievementList = [
-    new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
+    new Achievement("Trainee Handler", "Survive over 30 seconds!", "../images/babysheep.png", () => {
         // The requirement for the achievement being over written
-        return timeSurvived >= 5; // returns as a boolean
+        return timeSurvived >= 30; // returns as a boolean
     }),
-    new Achievement("No Life", "Survive over 10 Minutes, Nice carpel tunnel syndrome", "../images/babysheep.png", () => {
+    new Achievement("No Life", "Survive over 10 Minutes!", "../images/babysheep.png", () => {
         // The requirement for the achievement being over written
         return timeSurvived >= 600; // returns as a boolean
     }),
+    new Achievement("Hard Days Work", "Click over 100 times!", "../images/babyzilla.jpg", () => {
+        return totalClicks >= 100;
+    }),
+    new Achievement("Hardest Worker Around", "Click over 500 times!", "../images/babyzilla.jpg", () => {
+        return totalClicks >= 500;
+    }),
+    new Achievement("Why? Just why?", "You have clicked over 1000 times.... why....?", "../images/babyzilla.jpg", () => {
+        return totalClicks >= 500;
+    }),
+    new Achievement("The killer", "You have clicked over 1000 times.... why....?", "../images/babyzilla.jpg", () => {
+        return totalClicks == 100 && myPet.isDead;
+    })
 ]
 
 // Loops through our achievement list and checks if we've completed it
