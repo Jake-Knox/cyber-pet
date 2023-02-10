@@ -25,6 +25,8 @@ const killButton = document.getElementById("kill_button");
 // audio sources
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
+const glassAudio = document.getElementById("glass_shatter_audio");
+glassAudio.volume = 0.1; 
 // remember to test out volume changes - some sounds may need different changes
 const godzillaAudio1 = document.getElementById("godzilla_audio_1");
 const godzillaAudio2 = document.getElementById("godzilla_audio_2");
@@ -35,6 +37,9 @@ const kingKongAudioUnique = document.getElementById("kong_audio_3");
 const eSheepAudio1 = document.getElementById("sheep_audio_1");
 const eSheepAudio2 = document.getElementById("sheep_audio_2");
 const eSheepAudioUnique = document.getElementById("sheep_audio_3");
+
+// glass crack image
+const crackImage = document.getElementById("crack");
 
 
 // pet name
@@ -350,6 +355,9 @@ class KingKong extends BasePet {
             super.unique();
             kingKongAudioUnique.play();
             this.currentPowerness = 0;
+
+            glassAudio.play();
+            crackImage.style.display = "block";
 
             // is this okay?
             this.modifyHealthByValue(9999);

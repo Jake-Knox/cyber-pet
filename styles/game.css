@@ -345,7 +345,24 @@ h3 {
      margin: 0px;
 }
 
+#screen_crack_container{
+    border: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 90vw;
+    height: auto;
+}
 
+#crack{
+    border: none;
+    pointer-events: none;
+    width: 100vw;
+    height: 90vh;
+
+    display: none;
+}
 #reaperAudio {
     display:none;
 }
