@@ -38,28 +38,37 @@ h2 {
 }
 
 p {
-    font-size: 3.3em;
+    font-size: 3em;
     padding: 3vw 3vw 3vw 3vw;
     margin: 0px 0px 0px 0px;
 }
 
 .navbar {
     width: 100vw;
-    height: auto;
+    height: 4.96vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     background-color: #aed09e;
     color: #35492c;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 } 
 
 .navbar_item{
-    height: auto;
+    height: 3.77vw;
     width: calc((100vw)/3);    
-    border: 1px solid black;
+    border: 10px ridge #61b292;
     text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
     font-size: 3em;
     text-decoration: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 #pet_and_status{
