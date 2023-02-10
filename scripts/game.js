@@ -279,12 +279,6 @@ class ElectricSheep extends BasePet {
         this.isFrozen = false;
     }
 
-    charge(){
-        
-        // do something when charged
-        
-    }
-
     modifyHealthByValue(value) {
         // so the player can increase still when sheep unique is used
         if (this.isFrozen && value < 0) return;
@@ -343,10 +337,6 @@ class KingKong extends BasePet {
         this.currentPowerness = 0;
     }
 
-    poweredUp() {
-        // do something when powered up
-    }
-
     unique(){
         // method that first calls common pet function for unique (the event log) 
         // then does somethign else -
@@ -367,7 +357,6 @@ class KingKong extends BasePet {
 }
 
 class Godzilla extends BasePet {
-
     currentRadiation = 999;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxRadiation) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
@@ -375,10 +364,6 @@ class Godzilla extends BasePet {
         this.maxRadiation = maxRadiation;
         this.currentRadiation = 0;
 
-    }
-
-    nuclearBeam(){
-        // fire nuclear beam when max radiation
     }
 
     unique(){
