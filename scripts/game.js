@@ -283,8 +283,11 @@ class ElectricSheep extends BasePet {
     unique(){
         // method that first calls common pet function for unique (the event log) 
         // then does somethign else - plays sheep audio
-        super.unique();
-        eSheepAudioUnique.play();
+        if(this.currentCharge == this.maxCharge){
+            super.unique();
+            eSheepAudioUnique.play();
+            this.currentCharge = 0;
+        }        
     }
 
     // function for sheep only to add charge 
@@ -310,9 +313,15 @@ class KingKong extends BasePet {
 
     unique(){
         // method that first calls common pet function for unique (the event log) 
-        // then does somethign else - plays sheep audio
-        super.unique();
-        kingKongAudioUnique.play();
+        // then does somethign else -
+        if(this.currentPowerness == this.maxPowerness){
+            super.unique();
+            kingKongAudioUnique.play();
+            this.currentPowerness = 0;
+
+            // is this okay?
+            this.modifyHealthByValue(9999);
+        }  
     }
 
     // Adds to the power and makes sure it never goes below 0 or above the max powerness
@@ -329,6 +338,7 @@ class Godzilla extends BasePet {
 
         this.maxRadiation = maxRadiation;
         this.currentRadiation = 0;
+
     }
 
     nuclearBeam(){
@@ -337,9 +347,17 @@ class Godzilla extends BasePet {
 
     unique(){
         // method that first calls common pet function for unique (the event log) 
-        // then does somethign else - plays sheep audio
-        super.unique();
-        godzillaAudioUnique.play();
+        // then does somethign else -
+        if(this.currentRadiation == this.maxRadiation){
+            super.unique();
+            godzillaAudioUnique.play();
+            this.currentRadiation = 0;
+
+            // is this okay?
+            this.modifyHungerByValue(750);
+            this.modifyThirstByValue(750);
+            this.modifyHappinessByValue(-150);            
+        } 
     }
 
     addToRadiation(value) {
