@@ -368,7 +368,11 @@ const AchievementList = [
     new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
         // The requirement for the achievement being over written
         return timeSurvived >= 30; // returns as a boolean
-    })
+    }),
+    new Achievement("No Life", "Survive over 10 Minutes, Nice carpel tunnel syndrome", "../images/babysheep.png", () => {
+        // The requirement for the achievement being over written
+        return timeSurvived >= 600; // returns as a boolean
+    }),
 ]
 
 // Loops through our achievement list and checks if we've completed it
@@ -419,6 +423,8 @@ const createAchievement = (achievement) => {
 const timingFunction = () => {
     window.setInterval(() => {
         // updates time survived
+        if(myPet.isDead) return;
+
         timeSurvived++;
 
         // modifies our pet
