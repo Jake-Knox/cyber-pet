@@ -31,7 +31,6 @@ h1 {
     font-size: 4vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 0px 0px 0px 0px;
-    position: relative;
 }
 
 h2 {
@@ -41,7 +40,6 @@ h2 {
     font-size: 4vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 0px 0px 0px 0px;
-    position: relative;
 }
 
 p {
@@ -59,7 +57,6 @@ p {
     align-items: center;
     align-content: center;
     background-color: #aed09e;
-    color: #35492c;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
 } 
@@ -74,8 +71,12 @@ p {
     justify-content: center;
     font-size: 3vw;
     text-decoration: none;
+    color: #35492c;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 
@@ -187,7 +188,6 @@ img{
     height: auto;
     padding: 0vw 0vw 2vw 0vw;
     margin: 0vw 0vw 0vw 0vw;
-    position: relative;
     border-color:#a8896c;
     border-width: 1vw;
     border-style:ridge;
@@ -246,7 +246,6 @@ body{
     justify-content: center;
     justify-content: space-around;
     background-color: #57402b;
-    position: relative;
     height: 7vw;
     width: 100%;
     border-color:#a8896c;
@@ -271,6 +270,9 @@ body{
     margin: 0vw 0vw 0vw 0vw;
     width: auto;
     height: 2vw;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .toolbar_button:hover {
@@ -284,7 +286,7 @@ body{
     color: #35492c;
     background-color: #1c0818;
     border-color: #57402b;
-    transform:translate(0.3vw, 0.3vw);
+    transform:translate(0.1vw, 0.1vw);
     border-style:inset;
 }
 
@@ -312,7 +314,6 @@ h3 {
     font-size: 3vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 2vw 0vw 0vw 5vw;
-    position: relative;
 }
 
 
@@ -374,3 +375,9 @@ h3 {
 audio{
     display:none;
 }
+
+/* #raid_container {
+    position:fixed;
+    margin:0vw 0vw 0vw 28.4vw;
+    display: none;
+} */
