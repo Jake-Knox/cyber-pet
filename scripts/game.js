@@ -68,7 +68,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "block";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Charge"
+        uniqueBarTitle.textContent = "charge"
         uniqueBar.style.backgroundColor = "rgb(43, 93, 255)";
         uniqueButton.innerText = "emp";
         
@@ -83,7 +83,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Rage"
+        uniqueBarTitle.textContent = "rage"
         uniqueBar.style.backgroundColor = "rgb(255, 53, 38)";
         uniqueButton.innerText = "smash";
         
@@ -98,7 +98,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Radiation"
+        uniqueBarTitle.textContent = "radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
         uniqueButton.innerText = "roar";
         
@@ -500,6 +500,7 @@ const timingFunction = () => {
         // important checks
         checkAchievements();
         updateStatusBars();
+        lightUniqueButton();
     },1000); // every 1 second
 }
 
@@ -543,6 +544,26 @@ const updateStatusBars = () => {
     }
 }
 
+// light up unique button with respective colour when unique bar full
+const lightUniqueButton = () => {
+    if ( (petType == petTypeEnum.godzilla) && (myPet.currentRadiation == myPet.maxRadiation) ) {
+        uniqueButton.style.backgroundColor= "rgb(31, 255, 83)";
+        uniqueButton.style.borderColor= "rgb(31, 255, 83)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.kingKong) && (myPet.currentPowerness == myPet.maxPowerness) ) {
+        uniqueButton.style.backgroundColor= "rgb(255, 53, 38)";
+        uniqueButton.style.borderColor= "rgb(255, 53, 38)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.electricSheep) && (myPet.currentCharge == myPet.maxCharge) ) {
+        uniqueButton.style.backgroundColor= "rgb(43, 93, 255)";
+        uniqueButton.style.borderColor= "rgb(43, 93, 255)";
+        uniqueButton.style.color="black";
+    } else {
+        uniqueButton.style.backgroundColor="#57402b";
+        uniqueButton.style.borderColor="#a8896c";
+        uniqueButton.style.color="#61b292";
+    }
+}
 
 // Feature to add an event message to the event log
 // call logEvent - pass in the full message for the log
