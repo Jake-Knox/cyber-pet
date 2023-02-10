@@ -266,18 +266,43 @@ class ElectricSheep extends BasePet {
     // and comment :)
 
     currentCharge = 999;
-
+    isFrozen = false;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxCharge) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness)
 
         this.maxCharge = maxCharge;
         this.currentCharge = 0;
+        this.isFrozen = false;
     }
 
     charge(){
         
         // do something when charged
         
+    }
+
+    modifyHealthByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHealthByValue(value);
+    }
+
+    modifyHappinessByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHappinessByValue(value);
+    }
+
+    modifyThirstByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if(this.isFrozen && value < 0) return;
+        super.modifyThirstByValue(value);
+    }
+
+    modifyHungerByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHungerByValue(value);
     }
 
     unique(){
@@ -287,6 +312,13 @@ class ElectricSheep extends BasePet {
             super.unique();
             eSheepAudioUnique.play();
             this.currentCharge = 0;
+
+            this.isFrozen = true;
+
+            // disables it after 10 seconds
+            setTimeout(() => {
+                this.isFrozen = false;
+            }, 10000) // takes 10 seconds
         }        
     }
 
