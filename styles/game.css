@@ -51,7 +51,7 @@ p {
 }
 
 .navbar {
-    width: 100;
+    width: 100%;
     height: 4.96vw;
     display: flex;
     flex-direction: row;
@@ -67,12 +67,12 @@ p {
 .navbar_item{
     height: 3.77vw;
     width: calc((100vw)/3);    
-    border: 10px ridge #61b292;
+    border: 0.8vw ridge #61b292;
     text-align: center;
     align-content: center;
     align-items: center;
     justify-content: center;
-    font-size: 3em;
+    font-size: 3vw;
     text-decoration: none;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
