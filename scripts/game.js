@@ -1,13 +1,16 @@
 import { Clamp, petTypeEnum } from "./app.js";
 
+// main game vars
 let myPet = null;
 let timeSurvived = 0;
 
+// pictures
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
 const rip_pic=document.getElementById("rip");
 
+// status bars
 const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
 const thirstBar = document.getElementById("status-bar-thirst");
@@ -25,6 +28,7 @@ const killButton = document.getElementById("kill_button");
 // audio sources
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
+
 // remember to test out volume changes - some sounds may need different changes
 const godzillaAudio1 = document.getElementById("godzilla_audio_1");
 const godzillaAudio2 = document.getElementById("godzilla_audio_2");
@@ -118,7 +122,7 @@ window.addEventListener("load", (event) => {
 
 //  BUTTON EVENT LISTENERS
 feedButton.addEventListener("click", () => {
-    
+
     myPet.feed();
 
 })
@@ -438,6 +442,7 @@ const checkAchievements = () => {
         if(achievement.requirement()) {
             achievement.completed = true;
             createAchievement(achievement);
+            logEvent(`Player has unlocked the ${achievement.name} achievement! Well done!`)
         }
     }
 }
