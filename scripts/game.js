@@ -154,17 +154,6 @@ uniqueButton.addEventListener("click", () => {
 })
 
 killButton.addEventListener("click", ()=> {
-    // Sets all the bars to 0
-    myPet.modifyHungerByValue(-9999);
-    myPet.modifyThirstByValue(-9999);
-    myPet.modifyHappinessByValue(-9999);
-    if (petType == petTypeEnum.godzilla) {
-        myPet.addToRadiation(-9999);
-    } else if (petType == petTypeEnum.kingKong) {
-        myPet.addToPower(-9999);
-    } else if (petType == petTypeEnum.electricSheep) {
-        myPet.addToCharge(-9999);
-    };
     // Kills the pet
     myPet.takeDamage(99999);
 
@@ -283,10 +272,23 @@ class BasePet {
     #die() {
         this.isDead = true;
         console.log("RIP PET IS DEAD");
+        // changes picture to tombstone
         rip_pic.style.display = "block";
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        // Sets all the bars to 0
+        myPet.modifyHungerByValue(-9999);
+        myPet.modifyThirstByValue(-9999);
+        myPet.modifyHappinessByValue(-9999);
+        if (petType == petTypeEnum.godzilla) {
+            myPet.addToRadiation(-9999);
+        } else if (petType == petTypeEnum.kingKong) {
+            myPet.addToPower(-9999);
+        } else if (petType == petTypeEnum.electricSheep) {
+            myPet.addToCharge(-9999);
+        };
+        updateStatusBars();
         reaperAudio.play();
     }
 }
