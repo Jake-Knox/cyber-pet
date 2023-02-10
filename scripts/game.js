@@ -1,6 +1,7 @@
 import { Clamp, petTypeEnum } from "./app.js";
 
 let myPet = null;
+let timeSurvived = 0;
 
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
@@ -92,7 +93,6 @@ window.addEventListener("load", (event) => {
         uniqueBarTitle.textContent = "Radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
-
 
     timingFunction();
     updateStatusBars();
@@ -309,9 +309,75 @@ class Godzilla extends BasePet {
     }
 }
 
+class Achievement {
+    constructor(name, description, image, func) {
+        this.name = name;
+        this.description = description;
+        this.requirement = func;
+        this.image = image;
+        this.completed = false;
+    }
+
+    requirement() {
+        return false;
+    }
+}
+
+const AchievementList = [
+    new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
+        return timeSurvived >= 5; // returns as a boolean
+    })
+]
+
+const checkAchievements = () => {
+    for (let i = 0; i < AchievementList.length; i++) {
+        const achievement = AchievementList[i];
+        // Skips this achievement, no need to check anything
+        if(achievement.completed) {
+            continue;
+        }
+
+        if(achievement.requirement()) {
+            achievement.completed = true;
+            createAchievement(achievement);
+        }
+    }
+}
+
+const achievementParent = document.getElementById("achievement-wrapper");
+const createAchievement = (achievement) => {
+    const achievementBase = document.createElement("div");
+    achievementBase.classList.add("achievement")
+    achievementParent.append(achievementBase);
+
+    const achievementImage = document.createElement("img");
+    achievementImage.src = achievement.image;
+    achievementBase.append(achievementImage);
+
+    const achievementTextWrapper = document.createElement("div");
+    achievementBase.append(achievementTextWrapper);
+
+    const achievementTitle = document.createElement("h1");
+    achievementTitle.textContent = achievement.name;
+    achievementTextWrapper.append(achievementTitle);
+
+    const achievementDesc = document.createElement("h2");
+    achievementDesc.textContent = achievement.description;
+    achievementTextWrapper.append(achievementDesc);
+
+    window.setTimeout(() => {
+        achievementBase.remove();
+    }, 5000) // Destroys after 5 seconds
+}
+
+
 // function runs every second, updates pet stats and updates the status bars
 const timingFunction = () => {
     window.setInterval(() => {
+        // updates time survived
+        timeSurvived++;
+
+        // modifies our pet
         myPet.modifyHungerByValue(-10);
         myPet.modifyThirstByValue(-10);
         myPet.modifyHappinessByValue(-15);
@@ -326,7 +392,8 @@ const timingFunction = () => {
             myPet.addToCharge(2);
         }
 
-        console.log(myPet)
+        // important checks
+        checkAchievements();
         updateStatusBars();
     },1000); // every 1 second
 }
@@ -360,8 +427,6 @@ const updateStatusBars = () => {
     hungerBar.style.width=`${(myPet.currentHunger / myPet.maxHunger) * 100}%`;
     thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
     happinessBar.style.width = `${(myPet.currentHappiness / myPet.maxHappiness) * 100}%`;
-
-
 
     // Updates the states of the unique bars depending on the pet
     if(petType == petTypeEnum.godzilla) {
@@ -397,6 +462,5 @@ const logEvent = (message) => {
         // const firstLog = document.querySelector("#events_list:first-child")
         const firstLog = document.querySelector("li:last-child") // remove bottom element
         eventLogUL.removeChild(firstLog)
-        console.log("removed first child in list")
     }, 5000); // change lifespan of a single log
 }
