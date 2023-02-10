@@ -324,6 +324,7 @@ class Godzilla extends BasePet {
     }
 }
 
+// Achievement constructor
 class Achievement {
     constructor(name, description, image, func) {
         this.name = name;
@@ -333,17 +334,21 @@ class Achievement {
         this.completed = false;
     }
 
+    // Checks if the achievement is complete
     requirement() {
         return false;
     }
 }
 
+// Our list of achievements and where we create them
 const AchievementList = [
     new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
-        return timeSurvived >= 5; // returns as a boolean
+        // The requirement for the achievement being over written
+        return timeSurvived >= 30; // returns as a boolean
     })
 ]
 
+// Loops through our achievement list and checks if we've completed it
 const checkAchievements = () => {
     for (let i = 0; i < AchievementList.length; i++) {
         const achievement = AchievementList[i];
@@ -352,6 +357,7 @@ const checkAchievements = () => {
             continue;
         }
 
+        // Checks if the achievement requirements have been met and if they have, complete it
         if(achievement.requirement()) {
             achievement.completed = true;
             createAchievement(achievement);
