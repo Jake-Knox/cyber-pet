@@ -12,6 +12,15 @@ const petChangeTypeBox = document.getElementById("pet-selection-box");
 const petChangePreview = document.getElementById("pet-creation-preview-img");
 const petCreationButton = document.getElementById("pet-creation-submit-button");
 
+// Pet select sound files
+const godzillaAudio1 = document.getElementById("godzilla_audio_1");;
+godzillaAudio1.volume = 0.5;
+const kongAudio1 = document.getElementById("kong_audio_1");;
+kongAudio1.volume = 0.5;
+const sheepAudio1 = document.getElementById("sheep_audio_1");
+sheepAudio1.volume = 0.5;
+
+
 const previewImages = {
     ["godzilla"]: "../images/godzilla.jpg",
     ["king kong"]: "../images/kong.jpg",
@@ -55,12 +64,15 @@ petChangeTypeBox.addEventListener("change", (event) => {
     switch(petType) {
         case "godzilla":
             currentUserSettings.petType = petTypeEnum.godzilla;
+            godzillaAudio1.play();
             break;
         case "king kong":
             currentUserSettings.petType = petTypeEnum.kingKong;
+            kongAudio1.play();
             break;
         case "electric sheep":
             currentUserSettings.petType = petTypeEnum.electricSheep;
+            sheepAudio1.play();
             break;
     }
 })
