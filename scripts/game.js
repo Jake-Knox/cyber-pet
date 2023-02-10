@@ -445,16 +445,16 @@ const AchievementList = [
         // The requirement for the achievement being over written
         return timeSurvived >= 600; // returns as a boolean
     }),
-    new Achievement("Hard Days Work", "Click over 100 times!", "../images/babyzilla.jpg", () => {
+    new Achievement("Hard Days Work", "Click over 100 times!", "../images/achievements/cursor-100.png", () => {
         return totalClicks >= 100;
     }),
-    new Achievement("Hardest Worker Around", "Click over 500 times!", "../images/babyzilla.jpg", () => {
+    new Achievement("Hardest Worker Around", "Click over 500 times!", "../images/achievements/cursor-500.png", () => {
         return totalClicks >= 500;
     }),
-    new Achievement("Why? Just why?", "You have clicked over 1000 times.... why....?", "../images/babyzilla.jpg", () => {
-        return totalClicks >= 500;
+    new Achievement("Why? Just why?", "You have clicked over 1000 times.... why....?", "../images/achievements/cursor-1000.png", () => {
+        return totalClicks >= 1000;
     }),
-    new Achievement("The killer", "You have clicked over 1000 times.... why....?", "../images/babyzilla.jpg", () => {
+    new Achievement("The Killer", "Your poor pet :(", "../images/babyzilla.jpg", () => {
         return totalClicks == 100 && myPet.isDead;
     })
 ]
