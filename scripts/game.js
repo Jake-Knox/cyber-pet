@@ -31,6 +31,7 @@ reaperAudio.volume = 0.1;
 
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
+const achievementAudio1 = document.getElementById("achievement_audio_1");
 
 // remember to test out volume changes - some sounds may need different changes
 const godzillaAudio1 = document.getElementById("godzilla_audio_1");
@@ -425,7 +426,7 @@ class Achievement {
 const AchievementList = [
     new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
         // The requirement for the achievement being over written
-        return timeSurvived >= 30; // returns as a boolean
+        return timeSurvived >= 5; // returns as a boolean
     }),
     new Achievement("No Life", "Survive over 10 Minutes, Nice carpel tunnel syndrome", "../images/babysheep.png", () => {
         // The requirement for the achievement being over written
@@ -446,6 +447,7 @@ const checkAchievements = () => {
         if(achievement.requirement()) {
             achievement.completed = true;
             createAchievement(achievement);
+            achievementAudio1.play();
             logEvent(`Player has unlocked the ${achievement.name} achievement! Well done!`)
         }
     }
