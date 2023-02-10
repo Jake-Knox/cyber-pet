@@ -1,12 +1,16 @@
 import { Clamp, petTypeEnum } from "./app.js";
 
+// main game vars
 let myPet = null;
+let timeSurvived = 0;
 
+// pictures
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
 const rip_pic=document.getElementById("rip");
 
+// status bars
 const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
 const thirstBar = document.getElementById("status-bar-thirst");
@@ -18,8 +22,24 @@ const uniqueBarTitle = document.getElementById("unique-ability-title");
 const feedButton = document.getElementById("feed_button");
 const drinkButton = document.getElementById("drink_button");
 const playButton = document.getElementById("play_button");
-const cleanButton = document.getElementById("clean_button");
+const uniqueButton = document.getElementById("unique_button");
 const killButton = document.getElementById("kill_button");
+
+// audio sources
+const reaperAudio = document.getElementById("reaperAudio");
+reaperAudio.volume = 0.1; 
+
+// remember to test out volume changes - some sounds may need different changes
+const godzillaAudio1 = document.getElementById("godzilla_audio_1");
+const godzillaAudio2 = document.getElementById("godzilla_audio_2");
+const godzillaAudioUnique = document.getElementById("godzilla_audio_3");
+const kingKongAudio1 = document.getElementById("kong_audio_1");
+const kingKongAudio2 = document.getElementById("kong_audio_2");
+const kingKongAudioUnique = document.getElementById("kong_audio_3");
+const eSheepAudio1 = document.getElementById("sheep_audio_1");
+const eSheepAudio2 = document.getElementById("sheep_audio_2");
+const eSheepAudioUnique = document.getElementById("sheep_audio_3");
+
 
 // pet name
 const petNameTitle = document.getElementById("petName");
@@ -48,8 +68,9 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "block";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Charge"
+        uniqueBarTitle.textContent = "charge"
         uniqueBar.style.backgroundColor = "rgb(43, 93, 255)";
+        uniqueButton.innerText = "emp";
         
     }
     else if(petType == petTypeEnum.kingKong)
@@ -62,8 +83,9 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Rage"
+        uniqueBarTitle.textContent = "rage"
         uniqueBar.style.backgroundColor = "rgb(255, 53, 38)";
+        uniqueButton.innerText = "smash";
         
     } 
     else if(petType == petTypeEnum.godzilla)
@@ -76,8 +98,9 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Radiation"
+        uniqueBarTitle.textContent = "radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
+        uniqueButton.innerText = "roar";
         
     }
     else{
@@ -93,13 +116,13 @@ window.addEventListener("load", (event) => {
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
     }
 
-
     timingFunction();
+    updateStatusBars();
 })
 
 //  BUTTON EVENT LISTENERS
 feedButton.addEventListener("click", () => {
-    
+
     myPet.feed();
 
 })
@@ -113,9 +136,10 @@ playButton.addEventListener("click", () => {
     myPet.play();
 
 })
-cleanButton.addEventListener("click", () => {
+uniqueButton.addEventListener("click", () => {
     
-    myPet.clean();
+    // change to unique ability
+    myPet.unique();
 
 })
 
@@ -181,13 +205,11 @@ class BasePet {
 
     }
 
-    clean() {
+    unique() {
         if(this.isDead) return;
-        // do something when cleaned        
-        logEvent("cleaning pet");
+        // do something for unique abiliy        
+        logEvent("USING UNIQUE PET SUPER ABILITY");
 
-        // decide what to do with this button
-        // change to fit pet special moves? - add cleanliness bar?
     }
 
     // modifies health by value given
@@ -238,7 +260,7 @@ class BasePet {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
-        document.getElementById("reaperAudio").play();
+        reaperAudio.play();
     }
 }
 
@@ -248,18 +270,54 @@ class ElectricSheep extends BasePet {
     // and comment :)
 
     currentCharge = 999;
-
+    isFrozen = false;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxCharge) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness)
 
         this.maxCharge = maxCharge;
         this.currentCharge = 0;
+        this.isFrozen = false;
     }
 
-    charge(){
-        
-        // do something when charged
-        
+    modifyHealthByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHealthByValue(value);
+    }
+
+    modifyHappinessByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHappinessByValue(value);
+    }
+
+    modifyThirstByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if(this.isFrozen && value < 0) return;
+        super.modifyThirstByValue(value);
+    }
+
+    modifyHungerByValue(value) {
+        // so the player can increase still when sheep unique is used
+        if (this.isFrozen && value < 0) return;
+        super.modifyHungerByValue(value);
+    }
+
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else - plays sheep audio
+        if(this.currentCharge == this.maxCharge){
+            super.unique();
+            eSheepAudioUnique.play();
+            this.currentCharge = 0;
+
+            this.isFrozen = true;
+
+            // disables it after 10 seconds
+            setTimeout(() => {
+                this.isFrozen = false;
+            }, 10000) // takes 10 seconds
+        }        
     }
 
     // function for sheep only to add charge 
@@ -279,8 +337,17 @@ class KingKong extends BasePet {
         this.currentPowerness = 0;
     }
 
-    poweredUp() {
-        // do something when powered up
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else -
+        if(this.currentPowerness == this.maxPowerness){
+            super.unique();
+            kingKongAudioUnique.play();
+            this.currentPowerness = 0;
+
+            // is this okay?
+            this.modifyHealthByValue(9999);
+        }  
     }
 
     // Adds to the power and makes sure it never goes below 0 or above the max powerness
@@ -290,17 +357,28 @@ class KingKong extends BasePet {
 }
 
 class Godzilla extends BasePet {
-
     currentRadiation = 999;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxRadiation) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
 
         this.maxRadiation = maxRadiation;
         this.currentRadiation = 0;
+
     }
 
-    nuclearBeam(){
-        // fire nuclear beam when max radiation
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else -
+        if(this.currentRadiation == this.maxRadiation){
+            super.unique();
+            godzillaAudioUnique.play();
+            this.currentRadiation = 0;
+
+            // is this okay?
+            this.modifyHungerByValue(750);
+            this.modifyThirstByValue(750);
+            this.modifyHappinessByValue(-150);            
+        } 
     }
 
     addToRadiation(value) {
@@ -308,9 +386,88 @@ class Godzilla extends BasePet {
     }
 }
 
+// Achievement constructor
+class Achievement {
+    constructor(name, description, image, func) {
+        this.name = name;
+        this.description = description;
+        this.requirement = func;
+        this.image = image;
+        this.completed = false;
+    }
+
+    // Checks if the achievement is complete
+    requirement() {
+        return false;
+    }
+}
+
+// Our list of achievements and where we create them
+const AchievementList = [
+    new Achievement("Trainee Handler", "Survive over 30 seconds", "../images/babysheep.png", () => {
+        // The requirement for the achievement being over written
+        return timeSurvived >= 30; // returns as a boolean
+    }),
+    new Achievement("No Life", "Survive over 10 Minutes, Nice carpel tunnel syndrome", "../images/babysheep.png", () => {
+        // The requirement for the achievement being over written
+        return timeSurvived >= 600; // returns as a boolean
+    }),
+]
+
+// Loops through our achievement list and checks if we've completed it
+const checkAchievements = () => {
+    for (let i = 0; i < AchievementList.length; i++) {
+        const achievement = AchievementList[i];
+        // Skips this achievement, no need to check anything
+        if(achievement.completed) {
+            continue;
+        }
+
+        // Checks if the achievement requirements have been met and if they have, complete it
+        if(achievement.requirement()) {
+            achievement.completed = true;
+            createAchievement(achievement);
+            logEvent(`Player has unlocked the ${achievement.name} achievement! Well done!`)
+        }
+    }
+}
+
+const achievementParent = document.getElementById("achievement-wrapper");
+const createAchievement = (achievement) => {
+    const achievementBase = document.createElement("div");
+    achievementBase.classList.add("achievement")
+    achievementParent.append(achievementBase);
+
+    const achievementImage = document.createElement("img");
+    achievementImage.src = achievement.image;
+    achievementBase.append(achievementImage);
+
+    const achievementTextWrapper = document.createElement("div");
+    achievementBase.append(achievementTextWrapper);
+
+    const achievementTitle = document.createElement("h1");
+    achievementTitle.textContent = achievement.name;
+    achievementTextWrapper.append(achievementTitle);
+
+    const achievementDesc = document.createElement("h2");
+    achievementDesc.textContent = achievement.description;
+    achievementTextWrapper.append(achievementDesc);
+
+    window.setTimeout(() => {
+        achievementBase.remove();
+    }, 5000) // Destroys after 5 seconds
+}
+
+
 // function runs every second, updates pet stats and updates the status bars
 const timingFunction = () => {
     window.setInterval(() => {
+        // updates time survived
+        if(myPet.isDead) return;
+
+        timeSurvived++;
+
+        // modifies our pet
         myPet.modifyHungerByValue(-10);
         myPet.modifyThirstByValue(-10);
         myPet.modifyHappinessByValue(-15);
@@ -325,8 +482,10 @@ const timingFunction = () => {
             myPet.addToCharge(2);
         }
 
-        console.log(myPet)
+        // important checks
+        checkAchievements();
         updateStatusBars();
+        lightUniqueButton();
     },1000); // every 1 second
 }
 
@@ -360,8 +519,6 @@ const updateStatusBars = () => {
     thirstBar.style.width=`${(myPet.currentThirst / myPet.maxThirst) * 100}%`;
     happinessBar.style.width = `${(myPet.currentHappiness / myPet.maxHappiness) * 100}%`;
 
-
-
     // Updates the states of the unique bars depending on the pet
     if(petType == petTypeEnum.godzilla) {
         uniqueBar.style.width = `${(myPet.currentRadiation / myPet.maxRadiation) * 100}%`;
@@ -372,6 +529,26 @@ const updateStatusBars = () => {
     }
 }
 
+// light up unique button with respective colour when unique bar full
+const lightUniqueButton = () => {
+    if ( (petType == petTypeEnum.godzilla) && (myPet.currentRadiation == myPet.maxRadiation) ) {
+        uniqueButton.style.backgroundColor= "rgb(31, 255, 83)";
+        uniqueButton.style.borderColor= "rgb(31, 255, 83)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.kingKong) && (myPet.currentPowerness == myPet.maxPowerness) ) {
+        uniqueButton.style.backgroundColor= "rgb(255, 53, 38)";
+        uniqueButton.style.borderColor= "rgb(255, 53, 38)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.electricSheep) && (myPet.currentCharge == myPet.maxCharge) ) {
+        uniqueButton.style.backgroundColor= "rgb(43, 93, 255)";
+        uniqueButton.style.borderColor= "rgb(43, 93, 255)";
+        uniqueButton.style.color="black";
+    } else {
+        uniqueButton.style.backgroundColor="#57402b";
+        uniqueButton.style.borderColor="#a8896c";
+        uniqueButton.style.color="#61b292";
+    }
+}
 
 // Feature to add an event message to the event log
 // call logEvent - pass in the full message for the log
@@ -396,6 +573,5 @@ const logEvent = (message) => {
         // const firstLog = document.querySelector("#events_list:first-child")
         const firstLog = document.querySelector("li:last-child") // remove bottom element
         eventLogUL.removeChild(firstLog)
-        console.log("removed first child in list")
     }, 5000); // change lifespan of a single log
 }

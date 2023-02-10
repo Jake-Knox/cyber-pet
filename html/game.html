@@ -24,12 +24,20 @@
             about
         </div></a>
     </div>
-    
-    <h1 class="mainfont">CyberPet</h1>
-    <h2 id="petName" class="mainfont">My Pet</h2>
-
-    <div id="pet_and_status">
-                   
+    <div id="achievement-wrapper">
+        <!-- <div class="achievement">
+            <img src="../images/babysheep.png">
+            <div>
+                <h1>ACHIEVEMENT NAME</h1>
+                <h2>ACHIEVEMENT DESCRIPTION</h2>
+            </div>
+        </div> -->
+    </div>
+    <div id="titles">
+        <h1 class="mainfont">cyberpet status</h1>
+        <h2 id="petName" class="mainfont">my pet</h2>
+    </div>
+    <div id="pet_and_status">         
         <div id="pictures">
             <img id="godzilla" src="../images/godzilla.jpg" alt="a higly detailed digital painting of godzilla">
             <img id="kong" src="../images/kong.jpg" alt="a masterpiece artwork of king kong">
@@ -37,43 +45,46 @@
             <img id="rip" src="../images/rip.jpg" alt="you are dead, RIP">
         </div>
 
-        <div id="status_bar_box">
-            <p class="status-bar-title">health</p>
-            <div id="status-health-bar-wrapper" class="status-bar-holder">
-                <div id="status-bar-health" class="status-bar">
+        <div id="status_and toolbar">
+
+            <div id="status_bar_box">
+                <p class="status-bar-title">health</p>
+                <div id="status-health-bar-wrapper" class="status-bar-holder">
+                    <div id="status-bar-health" class="status-bar">
+                    </div>
+                </div>
+                <p class="status-bar-title">hunger</p>
+                <div id="status-hunger-bar-wrapper" class="status-bar-holder">
+                    <div id="status-bar-hunger" class="status-bar">
+                    </div>
+                </div>
+                <p class="status-bar-title">thirst</p>
+                <div id="status-thirst-bar-wrapper" class="status-bar-holder">
+                    <div id="status-bar-thirst" class="status-bar">
+                    </div>
+                </div>
+                <p class="status-bar-title">happiness</p>
+                <div id="status-happiness-bar-wrapper" class="status-bar-holder">
+                    <div id="status-bar-happiness" class="status-bar">
+                    </div>
+                </div>
+                <p id="unique-ability-title" class="status-bar-title">PLACEHOLDER</p>
+                <div id="status-unique-ability-bar-wrapper" class="status-bar-holder">
+                    <div id="status-bar-unique-ability" class="status-bar">
+                    </div>
                 </div>
             </div>
-            <p class="status-bar-title">hunger</p>
-            <div id="status-hunger-bar-wrapper" class="status-bar-holder">
-                <div id="status-bar-hunger" class="status-bar">
-                </div>
-            </div>
-            <p class="status-bar-title">thirst</p>
-            <div id="status-thirst-bar-wrapper" class="status-bar-holder">
-                <div id="status-bar-thirst" class="status-bar">
-                </div>
-            </div>
-            <p class="status-bar-title">happiness</p>
-            <div id="status-happiness-bar-wrapper" class="status-bar-holder">
-                <div id="status-bar-happiness" class="status-bar">
-                </div>
-            </div>
-            <p id="unique-ability-title" class="status-bar-title">PLACEHOLDER</p>
-            <div id="status-unique-ability-bar-wrapper" class="status-bar-holder">
-                <div id="status-bar-unique-ability" class="status-bar">
-                </div>
+
+            <div id="toolbar">
+                <div id="feed_button" class="toolbar_button">feed</div>
+                <div id="drink_button"class="toolbar_button">drink</div>
+                <div id="play_button"class="toolbar_button">play</div>
+                <div id="unique_button"class="toolbar_button">clean</div>
+                <div id="kill_button"class="toolbar_button">kill</div>
             </div>
 
         </div>
 
-    </div>
-
-    <div id="toolbar">
-        <div id="feed_button" class="toolbar_button">feed</div>
-        <div id="drink_button"class="toolbar_button">drink</div>
-        <div id="play_button"class="toolbar_button">play</div>
-        <div id="clean_button"class="toolbar_button">clean</div>
-        <div id="kill_button"class="toolbar_button">kill</div>
     </div>
 
     <h3>MEGA EVENT LOG:</h3>
@@ -94,6 +105,45 @@
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Godzilla audio -->
+    <audio id="godzilla_audio_1" controls>
+        <source src="../audio/godzilla_snarl_1.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="godzilla_audio_2" controls>
+        <source src="../audio/godzilla_snarl_2.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="godzilla_audio_3" controls>
+        <source src="../audio/godzilla_roar.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <!-- King Kong audio -->
+    <audio id="kong_audio_1" controls>
+        <source src="../audio/kong_roar_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="kong_audio_2" controls>
+        <source src="../audio/kong_roar_2.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="kong_audio_3" controls>
+        <source src="../audio/kong_roar_3_BIG.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <!-- Electric Sheep audio -->
+    <audio id="sheep_audio_1" controls>
+        <source src="../audio/sheep_baa_single.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="sheep_audio_2" controls>
+        <source src="../audio/sheep_baa_double.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="sheep_audio_3" controls>
+        <source src="../audio/sheep_time_freeze.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <script type="module" src="../scripts/game.js"></script>
 </body>
 
