@@ -24,10 +24,17 @@ const killButton = document.getElementById("kill_button");
 
 // audio sources
 const reaperAudio = document.getElementById("reaperAudio");
-reaperAudio.volume = 0.1;
-const kingKongSmash = null;
-const godzillaRoar = null;
-const eSheepEMP = null;
+reaperAudio.volume = 0.1; 
+// remember to test out volume changes - some sounds may need different changes
+const godzillaAudio1 = document.getElementById("godzilla_audio_1");
+const godzillaAudio2 = document.getElementById("godzilla_audio_2");
+const godzillaAudioUnique = document.getElementById("godzilla_audio_3");
+const kingKongAudio1 = document.getElementById("kong_audio_1");
+const kingKongAudio2 = document.getElementById("kong_audio_2");
+const kingKongAudioUnique = document.getElementById("kong_audio_3");
+const eSheepAudio1 = document.getElementById("sheep_audio_1");
+const eSheepAudio2 = document.getElementById("sheep_audio_2");
+const eSheepAudioUnique = document.getElementById("sheep_audio_3");
 
 
 // pet name
@@ -128,7 +135,7 @@ playButton.addEventListener("click", () => {
 uniqueButton.addEventListener("click", () => {
     
     // change to unique ability
-    myPet.clean();
+    myPet.unique();
 
 })
 
@@ -194,16 +201,11 @@ class BasePet {
 
     }
 
-    clean() {
+    unique() {
         if(this.isDead) return;
-
-
-
-        // do something when cleaned        
+        // do something for unique abiliy        
         logEvent("USING UNIQUE PET SUPER ABILITY");
 
-        // decide what to do with this button
-        // change to fit pet special moves? - add cleanliness bar?
     }
 
     // modifies health by value given
@@ -278,6 +280,13 @@ class ElectricSheep extends BasePet {
         
     }
 
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else - plays sheep audio
+        super.unique();
+        eSheepAudioUnique.play();
+    }
+
     // function for sheep only to add charge 
     addToCharge(value){
         this.currentCharge = Clamp(this.currentCharge + value, 0, this.maxCharge)
@@ -299,6 +308,13 @@ class KingKong extends BasePet {
         // do something when powered up
     }
 
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else - plays sheep audio
+        super.unique();
+        kingKongAudioUnique.play();
+    }
+
     // Adds to the power and makes sure it never goes below 0 or above the max powerness
     addToPower(value) {
         this.currentPowerness = Clamp(this.currentPowerness + value, 0, this.maxPowerness);
@@ -317,6 +333,13 @@ class Godzilla extends BasePet {
 
     nuclearBeam(){
         // fire nuclear beam when max radiation
+    }
+
+    unique(){
+        // method that first calls common pet function for unique (the event log) 
+        // then does somethign else - plays sheep audio
+        super.unique();
+        godzillaAudioUnique.play();
     }
 
     addToRadiation(value) {
