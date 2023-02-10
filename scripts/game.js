@@ -1,13 +1,16 @@
 import { Clamp, petTypeEnum } from "./app.js";
 
+// main game vars
 let myPet = null;
 let timeSurvived = 0;
 
+// pictures
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
 const rip_pic=document.getElementById("rip");
 
+// status bars
 const healthBar = document.getElementById("status-bar-health");
 const hungerBar = document.getElementById("status-bar-hunger");
 const thirstBar = document.getElementById("status-bar-thirst");
@@ -25,8 +28,10 @@ const killButton = document.getElementById("kill_button");
 // audio sources
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
+
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
+
 // remember to test out volume changes - some sounds may need different changes
 const godzillaAudio1 = document.getElementById("godzilla_audio_1");
 const godzillaAudio2 = document.getElementById("godzilla_audio_2");
@@ -69,7 +74,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "block";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Charge"
+        uniqueBarTitle.textContent = "charge"
         uniqueBar.style.backgroundColor = "rgb(43, 93, 255)";
         uniqueButton.innerText = "emp";
         
@@ -84,7 +89,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Rage"
+        uniqueBarTitle.textContent = "rage"
         uniqueBar.style.backgroundColor = "rgb(255, 53, 38)";
         uniqueButton.innerText = "smash";
         
@@ -99,7 +104,7 @@ window.addEventListener("load", (event) => {
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Radiation"
+        uniqueBarTitle.textContent = "radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
         uniqueButton.innerText = "roar";
         
@@ -123,7 +128,7 @@ window.addEventListener("load", (event) => {
 
 //  BUTTON EVENT LISTENERS
 feedButton.addEventListener("click", () => {
-    
+
     myPet.feed();
 
 })
@@ -146,8 +151,18 @@ uniqueButton.addEventListener("click", () => {
 
 killButton.addEventListener("click", ()=> {
     
+    myPet.modifyHungerByValue(-9999);
+    myPet.modifyThirstByValue(-9999);
+    myPet.modifyHappinessByValue(-9999);
+    if (petType == petTypeEnum.godzilla) {
+        myPet.addToRadiation(-9999);
+    } else if (petType == petTypeEnum.kingKong) {
+        myPet.addToPower(-9999);
+    } else if (petType == petTypeEnum.electricSheep) {
+        myPet.addToCharge(-9999);
+    };
     myPet.takeDamage(99999);
-    
+    updateStatusBars();
 })
 
 
@@ -280,12 +295,6 @@ class ElectricSheep extends BasePet {
         this.isFrozen = false;
     }
 
-    charge(){
-        
-        // do something when charged
-        
-    }
-
     modifyHealthByValue(value) {
         // so the player can increase still when sheep unique is used
         if (this.isFrozen && value < 0) return;
@@ -344,10 +353,6 @@ class KingKong extends BasePet {
         this.currentPowerness = 0;
     }
 
-    poweredUp() {
-        // do something when powered up
-    }
-
     unique(){
         // method that first calls common pet function for unique (the event log) 
         // then does somethign else -
@@ -371,7 +376,6 @@ class KingKong extends BasePet {
 }
 
 class Godzilla extends BasePet {
-
     currentRadiation = 999;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness, maxRadiation) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
@@ -379,10 +383,6 @@ class Godzilla extends BasePet {
         this.maxRadiation = maxRadiation;
         this.currentRadiation = 0;
 
-    }
-
-    nuclearBeam(){
-        // fire nuclear beam when max radiation
     }
 
     unique(){
@@ -446,6 +446,7 @@ const checkAchievements = () => {
         if(achievement.requirement()) {
             achievement.completed = true;
             createAchievement(achievement);
+            logEvent(`Player has unlocked the ${achievement.name} achievement! Well done!`)
         }
     }
 }
@@ -503,6 +504,7 @@ const timingFunction = () => {
         // important checks
         checkAchievements();
         updateStatusBars();
+        lightUniqueButton();
     },1000); // every 1 second
 }
 
@@ -546,6 +548,26 @@ const updateStatusBars = () => {
     }
 }
 
+// light up unique button with respective colour when unique bar full
+const lightUniqueButton = () => {
+    if ( (petType == petTypeEnum.godzilla) && (myPet.currentRadiation == myPet.maxRadiation) ) {
+        uniqueButton.style.backgroundColor= "rgb(31, 255, 83)";
+        uniqueButton.style.borderColor= "rgb(31, 255, 83)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.kingKong) && (myPet.currentPowerness == myPet.maxPowerness) ) {
+        uniqueButton.style.backgroundColor= "rgb(255, 53, 38)";
+        uniqueButton.style.borderColor= "rgb(255, 53, 38)";
+        uniqueButton.style.color="black";
+    } else if ( (petType == petTypeEnum.electricSheep) && (myPet.currentCharge == myPet.maxCharge) ) {
+        uniqueButton.style.backgroundColor= "rgb(43, 93, 255)";
+        uniqueButton.style.borderColor= "rgb(43, 93, 255)";
+        uniqueButton.style.color="black";
+    } else {
+        uniqueButton.style.backgroundColor="#57402b";
+        uniqueButton.style.borderColor="#a8896c";
+        uniqueButton.style.color="#61b292";
+    }
+}
 
 // Feature to add an event message to the event log
 // call logEvent - pass in the full message for the log
