@@ -363,9 +363,12 @@ class KingKong extends BasePet {
             this.currentPowerness = 0;
 
             glassAudio.play();
-            crackImage.style.display = "block";
+            crackImage.style.display = "block";  
+            window.setTimeout(() => {
+                crackImage.style.display = "none";  
+            }, 5000);  
 
-            // is this okay?
+            // go to max health
             this.modifyHealthByValue(9999);
         }  
     }
