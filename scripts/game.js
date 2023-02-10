@@ -131,6 +131,8 @@ window.addEventListener("load", (event) => {
 const addToTotalClicks = () => {
     if (myPet.isDead) return;
     totalClicks++;
+    console.log(totalClicks);
+    checkAchievements();
 }
 
 //  BUTTON EVENT LISTENERS
@@ -154,6 +156,7 @@ uniqueButton.addEventListener("click", () => {
 })
 
 killButton.addEventListener("click", ()=> {
+    addToTotalClicks();
     // Kills the pet
     myPet.takeDamage(99999);
 
@@ -161,7 +164,6 @@ killButton.addEventListener("click", ()=> {
     updateStatusBars();
 
     // Check for secret achievement
-    addToTotalClicks();
     checkAchievements();
 })
 
@@ -439,25 +441,26 @@ class Achievement {
 
 // Our list of achievements and where we create them
 const AchievementList = [
-    new Achievement("Trainee Handler", "Survive over 30 seconds!", "../images/babysheep.png", () => {
+    new Achievement("Trainee Handler", "Survive over 30 seconds!", "../images/achievements/hourglass-30.png", () => {
         // The requirement for the achievement being over written
         return timeSurvived >= 30; // returns as a boolean
     }),
-    new Achievement("No Life", "Survive over 10 Minutes!", "../images/babysheep.png", () => {
+    new Achievement("No Life", "Survive over 10 Minutes!", "../images/achievements/hourglass-600.png", () => {
         // The requirement for the achievement being over written
         return timeSurvived >= 600; // returns as a boolean
     }),
     new Achievement("Hard Days Work", "Click over 100 times!", "../images/achievements/cursor-100.png", () => {
-        return totalClicks >= 100;
+        return totalClicks >= 100; // returns as a boolean
     }),
     new Achievement("Hardest Worker Around", "Click over 500 times!", "../images/achievements/cursor-500.png", () => {
-        return totalClicks >= 500;
+        return totalClicks >= 500; // returns as a boolean
     }),
     new Achievement("Why? Just why?", "You have clicked over 1000 times.... why....?", "../images/achievements/cursor-1000.png", () => {
-        return totalClicks >= 1000;
+        return totalClicks >= 1000; // returns as a boolean
     }),
-    new Achievement("The Killer", "Your poor pet :(", "../images/babyzilla.jpg", () => {
-        return totalClicks == 100 && myPet.isDead;
+    new Achievement("The Killer", "Your poor pet :(", "../images/achievements/cursor-killer.png", () => {
+        // can only be true if you kill your pet at same time as the 100th click
+        return totalClicks == 100 && myPet.isDead; // returns as a boolean
     })
 ]
 
