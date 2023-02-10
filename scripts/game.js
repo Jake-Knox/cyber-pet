@@ -19,8 +19,16 @@ const uniqueBarTitle = document.getElementById("unique-ability-title");
 const feedButton = document.getElementById("feed_button");
 const drinkButton = document.getElementById("drink_button");
 const playButton = document.getElementById("play_button");
-const cleanButton = document.getElementById("clean_button");
+const uniqueButton = document.getElementById("unique_button");
 const killButton = document.getElementById("kill_button");
+
+// audio sources
+const reaperAudio = document.getElementById("reaperAudio");
+reaperAudio.volume = 0.1;
+const kingKongSmash = null;
+const godzillaRoar = null;
+const eSheepEMP = null;
+
 
 // pet name
 const petNameTitle = document.getElementById("petName");
@@ -51,6 +59,7 @@ window.addEventListener("load", (event) => {
 
         uniqueBarTitle.textContent = "Charge"
         uniqueBar.style.backgroundColor = "rgb(43, 93, 255)";
+        uniqueButton.innerText = "emp";
         
     }
     else if(petType == petTypeEnum.kingKong)
@@ -65,6 +74,7 @@ window.addEventListener("load", (event) => {
 
         uniqueBarTitle.textContent = "Rage"
         uniqueBar.style.backgroundColor = "rgb(255, 53, 38)";
+        uniqueButton.innerText = "smash";
         
     } 
     else if(petType == petTypeEnum.godzilla)
@@ -79,6 +89,7 @@ window.addEventListener("load", (event) => {
 
         uniqueBarTitle.textContent = "Radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
+        uniqueButton.innerText = "roar";
         
     }
     else{
@@ -114,8 +125,9 @@ playButton.addEventListener("click", () => {
     myPet.play();
 
 })
-cleanButton.addEventListener("click", () => {
+uniqueButton.addEventListener("click", () => {
     
+    // change to unique ability
     myPet.clean();
 
 })
@@ -184,8 +196,11 @@ class BasePet {
 
     clean() {
         if(this.isDead) return;
+
+
+
         // do something when cleaned        
-        logEvent("cleaning pet");
+        logEvent("USING UNIQUE PET SUPER ABILITY");
 
         // decide what to do with this button
         // change to fit pet special moves? - add cleanliness bar?
@@ -239,7 +254,7 @@ class BasePet {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
-        document.getElementById("reaperAudio").play();
+        reaperAudio.play();
     }
 }
 
