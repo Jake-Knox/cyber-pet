@@ -106,6 +106,7 @@ window.addEventListener("load", (event) => {
 
 
     timingFunction();
+    updateStatusBars();
 })
 
 //  BUTTON EVENT LISTENERS
