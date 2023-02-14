@@ -10,6 +10,7 @@ let currentEvolution = 1;
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
+const rocky_pic=document.getElementById("rocky");
 const rip_pic=document.getElementById("rip");
 
 // status bars
@@ -67,6 +68,7 @@ if(petNameTitle.innerText == "")
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
+rocky_pic.style.display = "none";
 rip_pic.style.display = "none";
 
 // gets the pet type in local storage
@@ -85,6 +87,7 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "none";
         sheep_pic.src="../images/babySheep.png";
         sheep_pic.style.display = "block";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "charge"
@@ -101,6 +104,7 @@ window.addEventListener("load", (event) => {
         kong_pic.src="../images/babyKong.png";
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "rage"
@@ -117,11 +121,31 @@ window.addEventListener("load", (event) => {
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
         uniqueButton.innerText = "roar";
+        
+    }else if(petType == petTypeEnum.rocky)
+    {
+        // create a rocky
+        myPet = new Rocky(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        // show rocky, hide other pictures
+
+        // add rocky img
+        // hide rocky img in other parts
+
+        godzilla_pic.style.display = "none";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "none";
+        rocky_pic.style.display = "block";
+        rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "Rockin'"
+        uniqueBar.style.backgroundColor = "rgb(165,42,42)";
+        uniqueButton.innerText = "Rock";
         
     }
     else{
@@ -442,6 +466,17 @@ class Godzilla extends BasePet {
 
     addToRadiation(value) {
         this.currentRadiation = Clamp(this.currentRadiation + value, 0, this.maxRadiation);
+    }
+}
+class Rocky extends BasePet {
+    // currentX = 999;
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness,) {
+        super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
+
+    }
+
+    unique(){
+        // nothing        
     }
 }
 
