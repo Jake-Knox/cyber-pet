@@ -64,7 +64,7 @@ const petNameTitle = document.getElementById("petName");
 petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
 if(petNameTitle.innerText == "")
 {
-    petNameTitle.innerText = "My Pet";
+    petNameTitle.innerText = "my pet";
 }
 
 
@@ -148,9 +148,9 @@ window.addEventListener("load", (event) => {
         rocky_pic.style.display = "block";
         rip_pic.style.display = "none";
 
-        uniqueBarTitle.textContent = "Rockin'"
+        uniqueBarTitle.textContent = "rockin'"
         uniqueBar.style.backgroundColor = "rgb(165,42,42)";
-        uniqueButton.innerText = "Rock";
+        uniqueButton.innerText = "rock";
         
     }
     else{
@@ -593,7 +593,7 @@ const timingFunction = () => {
 
         timeSurvived++;
         // evolutions based on time survived
-        if(timeSurvived == 15)
+        if(timeSurvived == 20)
         {
             // evolution 2
             currentEvolution = 2;
@@ -617,7 +617,7 @@ const timingFunction = () => {
             }      
 
         }
-        else if(timeSurvived == 30)
+        else if(timeSurvived == 40)
         {
             // evolution 3
             currentEvolution = 3;
@@ -644,25 +644,35 @@ const timingFunction = () => {
         {
             // evolution 4
             currentEvolution = 4;
-            // play jojo theme
-            backgroundAudio.pause();
-            jojoAudio.play();
-            // code to change image of pets to hedgehog
+
+            // code to change image of pets to hedgehog and play jojo theme
             if(petType == petTypeEnum.electricSheep)
             {
-                sheep_pic.src="../images/hedgehog_vs_frog.jpg";          
+                sheep_pic.src="../images/hedgehog_vs_frog.jpg";  
+                backgroundAudio.pause();
+                jojoAudio.play();        
             }
             else if(petType == petTypeEnum.kingKong)
             {
-                kong_pic.src="../images/hedgehog_vs_frog.jpg";                        
+                kong_pic.src="../images/hedgehog_vs_frog.jpg";
+                backgroundAudio.pause();
+                jojoAudio.play();                       
             }
             else if(petType == petTypeEnum.godzilla)
             {
-                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";                   
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
+                backgroundAudio.pause();
+                jojoAudio.play();                  
+            }
+            else if (petType == petTypeEnum.rocky)
+            {
+                // do nothing
             }
             else {
                 // catch godzilla
-                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";
+                backgroundAudio.pause();
+                jojoAudio.play();  
             }   
         }
 

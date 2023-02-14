@@ -81,8 +81,8 @@ petChangeTypeBox.addEventListener("change", (event) => {
             break;
         case "rocky":
             currentUserSettings.petType = petTypeEnum.rocky;
-            currentUserSettings.name = "Rocky";
-            petNameP.textContent = "Rocky";
+            currentUserSettings.name = "rocky";
+            petNameP.textContent = "rocky";
             // rocky audio
             break;
     }
