@@ -73,6 +73,7 @@ window.addEventListener("load", (event) => {
         // show sheep, hide other pictures
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
+        sheep_pic.src="../images/babySheep.png";
         sheep_pic.style.display = "block";
         rip_pic.style.display = "none";
 
@@ -87,6 +88,7 @@ window.addEventListener("load", (event) => {
         myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show kong, hide other pictures
         godzilla_pic.style.display = "none";
+        kong_pic.src="../images/babyKong.png";
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
         rip_pic.style.display = "none";
@@ -101,6 +103,7 @@ window.addEventListener("load", (event) => {
         // create a godzilla
         myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show godzilla, hide other pictures
+        godzilla_pic.src="../images/babyzilla.jpg";
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
@@ -115,6 +118,7 @@ window.addEventListener("load", (event) => {
         //option for loading the game page without creating a pet first?
         myPet = new Godzilla(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show godzilla, hide other pictures
+        godzilla_pic.src="../images/babyzilla.jpg";
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
@@ -518,6 +522,49 @@ const timingFunction = () => {
         if(myPet.isDead) return;
 
         timeSurvived++;
+        if(timeSurvived == 15)
+        {
+            // evolution 2
+            // code to change image of pets
+            if(petType == petTypeEnum.electricSheep)
+            {
+                sheep_pic.src="../images/middleSheep.png";          
+            }
+            else if(petType == petTypeEnum.kingKong)
+            {
+                kong_pic.src="../images/middleKong.png";                        
+            }
+            else if(petType == petTypeEnum.godzilla)
+            {
+                godzilla_pic.src="../images/middlezilla.png";                   
+            }
+            else {
+                // catch godzilla
+                godzilla_pic.src="../images/middlezilla.png";   
+            }      
+        }
+        else if(timeSurvived == 30)
+        {
+            // evolution 3
+            // code to change image of pets again
+            if(petType == petTypeEnum.electricSheep)
+            {
+                sheep_pic.src="../images/sheep.jpg";          
+            }
+            else if(petType == petTypeEnum.kingKong)
+            {
+                kong_pic.src="../images/kong.jpg";                        
+            }
+            else if(petType == petTypeEnum.godzilla)
+            {
+                godzilla_pic.src="../images/godzilla.jpg";                   
+            }
+            else {
+                // catch godzilla
+                godzilla_pic.src="../images/godzilla.jpg";   
+            }   
+
+        }
 
         // modifies our pet
         myPet.modifyHungerByValue(-10);
