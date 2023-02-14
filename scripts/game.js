@@ -238,7 +238,7 @@ class BasePet {
     unique() {
         if(this.isDead) return;
         // do something for unique abiliy        
-        logEvent(`SPECIAL ABILITY`);
+        // logEvent(`SPECIAL ABILITY`);
 
     }
 
