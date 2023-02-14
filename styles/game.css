@@ -9,6 +9,7 @@
 #57402b dark brown
 */
 
+
 * {
     font-family: 'IM Fell English SC', serif;
 }
@@ -31,7 +32,6 @@ h1 {
     font-size: 4vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 0px 0px 0px 0px;
-    position: relative;
 }
 
 h2 {
@@ -41,7 +41,6 @@ h2 {
     font-size: 4vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 0px 0px 0px 0px;
-    position: relative;
 }
 
 p {
@@ -51,7 +50,7 @@ p {
 }
 
 .navbar {
-    width: 100;
+    width: 100%;
     height: 4.96vw;
     display: flex;
     flex-direction: row;
@@ -59,7 +58,6 @@ p {
     align-items: center;
     align-content: center;
     background-color: #aed09e;
-    color: #35492c;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
 } 
@@ -67,15 +65,19 @@ p {
 .navbar_item{
     height: 3.77vw;
     width: calc((100vw)/3);    
-    border: 10px ridge #61b292;
+    border: 0.8vw ridge #61b292;
     text-align: center;
     align-content: center;
     align-items: center;
     justify-content: center;
-    font-size: 3em;
+    font-size: 3vw;
     text-decoration: none;
+    color: #35492c;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 
@@ -98,6 +100,7 @@ p {
     border-width: 0.5vw;
     border-style: ridge;
     border-color: rgb(203, 164, 92);
+    z-index: 999999;
 }
 
 .achievement * {
@@ -112,6 +115,11 @@ p {
     margin-left: 0.3vw;
     border-color: rgb(161, 172, 181);
     align-self: center;
+    z-index: 9999999;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .achievement > div {
@@ -124,16 +132,18 @@ p {
 }
 
 .achievement div h1 {
-    font-size: 2vh;
+    font-size: 2.6vh;
     margin-left: 0.4vh;
     text-align: left;
+    z-index: 9999999;
 }
 
 .achievement div h2 {
-    font-size: 1.2vh;
+    font-size: 2vh;
     margin-left: 0.4vh;
     text-align: left;
     color: rgb(203, 203, 203);
+    z-index: 9999999;
 }
 
 #pet_and_status{
@@ -176,14 +186,13 @@ img{
 #status_bar_box {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     justify-content:space-around;
     background-color: #a8896c;
     width: 100%;
     height: auto;
     padding: 0vw 0vw 2vw 0vw;
     margin: 0vw 0vw 0vw 0vw;
-    position: relative;
     border-color:#a8896c;
     border-width: 1vw;
     border-style:ridge;
@@ -242,7 +251,6 @@ body{
     justify-content: center;
     justify-content: space-around;
     background-color: #57402b;
-    position: relative;
     height: 7vw;
     width: 100%;
     border-color:#a8896c;
@@ -267,6 +275,9 @@ body{
     margin: 0vw 0vw 0vw 0vw;
     width: auto;
     height: 2vw;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .toolbar_button:hover {
@@ -280,7 +291,7 @@ body{
     color: #35492c;
     background-color: #1c0818;
     border-color: #57402b;
-    transform:translate(0.3vw, 0.3vw);
+    transform:translate(0.1vw, 0.1vw);
     border-style:inset;
 }
 
@@ -308,7 +319,6 @@ h3 {
     font-size: 3vw;
     padding: 0vw 0vw 0vw 0vw;
     margin: 2vw 0vw 0vw 5vw;
-    position: relative;
 }
 
 
@@ -341,15 +351,44 @@ h3 {
 .event_text{
     font-size: 2em;
     padding: 0px; 
-     padding: 1vh, 1vw, 1vh, 1vw; 
-     margin: 0px;
+    padding: 1vh, 1vw, 1vh, 1vw; 
+    margin: 0px;
 }
 
+#screen_crack_container{
+    border: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 90vw;
+    height: auto;
+}
 
+#crack{
+    border: none;
+    pointer-events: none;
+    width: 100vw;
+    height: 90vh;
+
+    display: none;
+}
 #reaperAudio {
     display:none;
 }
 
 audio{
     display:none;
+}
+
+#raid_container {
+    position:fixed;
+    margin:0vw 0vw 0vw 28.4vw;
+    display: none;
+}
+
+#raid_button {
+    height: 20vw;
+    width: auto;
+    overflow: hidden;
 }

@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    border: 15px #57402b ridge;
+    border: 1.2vw #57402b ridge;
     width: 80vw;
     height: auto;
     margin: 0px 0px 0px 0px;
@@ -96,7 +96,7 @@
     height: 20vw;
     width: auto;
     margin: 0vw 0vw 0vw 0vw;
-    border: 10px #57402b ridge;
+    border: 0.8vw #57402b ridge;
 }
 
 #name_change_button{
