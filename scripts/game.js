@@ -52,6 +52,12 @@ const crackImage = document.getElementById("crack");
 // pet name
 const petNameTitle = document.getElementById("petName");
 petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
+if(petNameTitle.innerText == "")
+{
+    petNameTitle.innerText = "My Pet";
+}
+
+
 
 // sets pictures to hidden as default
 godzilla_pic.style.display = "none";
@@ -204,7 +210,7 @@ class BasePet {
         if(this.isDead) return;
         // do something when fed
         this.modifyHungerByValue(10);
-        logEvent("feeding pet");
+        logEvent(`Feeding ${petNameTitle.innerText} some food`);
 
         updateStatusBars();
     }
@@ -212,7 +218,7 @@ class BasePet {
     drink() {
         if(this.isDead) return;
         // do something when drinking
-        logEvent("drinking pet");
+        logEvent(`Giving ${petNameTitle.innerText} something to drink`);
         this.modifyThirstByValue(10);
 
         updateStatusBars();
@@ -221,7 +227,7 @@ class BasePet {
     play() {
         if(this.isDead) return;
         // do something when played with
-        logEvent("playing with pet");
+        logEvent(`Playing with ${petNameTitle.innerText}`);
         this.modifyHappinessByValue(10);
 
         updateStatusBars();
@@ -231,7 +237,7 @@ class BasePet {
     unique() {
         if(this.isDead) return;
         // do something for unique abiliy        
-        logEvent("USING UNIQUE PET SUPER ABILITY");
+        logEvent(`SPECIAL ABILITY`);
 
     }
 
@@ -278,7 +284,8 @@ class BasePet {
     // called when the pet dies
     #die() {
         this.isDead = true;
-        console.log("RIP PET IS DEAD");
+        // console.log(`RIP ${petNameTitle.innerText} IS DEAD`);
+        logEvent(`RIP. ${petNameTitle.innerText} IS DEAD!`);
         // changes picture to tombstone
         rip_pic.style.display = "block";
         godzilla_pic.style.display = "none";
@@ -347,8 +354,9 @@ class ElectricSheep extends BasePet {
             eSheepAudioUnique.play();
             this.currentCharge = 0;
 
-            this.isFrozen = true;
+            logEvent(`${petNameTitle.innerText} USES EMP TIME FREEZE`);
 
+            this.isFrozen = true;
             // disables it after 10 seconds
             setTimeout(() => {
                 this.isFrozen = false;
@@ -380,6 +388,8 @@ class KingKong extends BasePet {
             super.unique();
             kingKongAudioUnique.play();
             this.currentPowerness = 0;
+
+            logEvent(`${petNameTitle.innerText} USES SMASH SCREEN`);
 
             glassAudio.play();
             crackImage.style.display = "block";  
@@ -416,6 +426,8 @@ class Godzilla extends BasePet {
             godzillaAudioUnique.play();
             this.currentRadiation = 0;
 
+            logEvent(`${petNameTitle.innerText} USES NUCLEAR BREATH`);
+            
             // is this okay?
             this.modifyHungerByValue(750);
             this.modifyThirstByValue(750);
@@ -522,9 +534,10 @@ const timingFunction = () => {
         if(myPet.isDead) return;
 
         timeSurvived++;
+        // evolutions based on time survived
         if(timeSurvived == 15)
         {
-            // evolution 2
+            // evolution 1
             // code to change image of pets
             if(petType == petTypeEnum.electricSheep)
             {
@@ -545,7 +558,7 @@ const timingFunction = () => {
         }
         else if(timeSurvived == 30)
         {
-            // evolution 3
+            // evolution 2
             // code to change image of pets again
             if(petType == petTypeEnum.electricSheep)
             {
@@ -563,7 +576,6 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/godzilla.jpg";   
             }   
-
         }
 
         // modifies our pet
