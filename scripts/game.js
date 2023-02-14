@@ -31,6 +31,9 @@ const killButton = document.getElementById("kill_button");
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
 
+const jojoAudio = document.getElementById("jojoAudio");
+jojoAudio.volume = 0.4;
+
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
 const achievementAudio1 = document.getElementById("achievement_audio_1");
@@ -304,6 +307,7 @@ class BasePet {
             myPet.addToCharge(-9999);
         };
         updateStatusBars();
+        jojoAudio.pause();
         reaperAudio.play();
     }
 }
@@ -596,6 +600,8 @@ const timingFunction = () => {
         {
             // evolution 4
             currentEvolution = 4;
+            // play jojo theme
+            jojoAudio.play();
             // code to change image of pets to hedgehog
             if(petType == petTypeEnum.electricSheep)
             {
