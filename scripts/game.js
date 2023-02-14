@@ -29,11 +29,16 @@ const uniqueButton = document.getElementById("unique_button");
 const killButton = document.getElementById("kill_button");
 
 // audio sources
+const backgroundAudio = document.getElementById("backgroundAudio");
+backgroundAudio.volume = 0.1;
+
+const raidAudio = document.getElementById("raidAudio");
+
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
 
 const jojoAudio = document.getElementById("jojoAudio");
-jojoAudio.volume = 0.4;
+jojoAudio.volume = 0.1;
 
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
@@ -332,6 +337,7 @@ class BasePet {
             myPet.addToCharge(-9999);
         };
         updateStatusBars();
+        backgroundAudio.pause();
         jojoAudio.pause();
         reaperAudio.play();
     }
@@ -639,6 +645,7 @@ const timingFunction = () => {
             // evolution 4
             currentEvolution = 4;
             // play jojo theme
+            backgroundAudio.pause();
             jojoAudio.play();
             // code to change image of pets to hedgehog
             if(petType == petTypeEnum.electricSheep)
@@ -778,13 +785,14 @@ const logEvent = (message) => {
 const raidShadowAD = () => {
     const raidBox = document.getElementById("raid_container")
     let raidInterval = window.setInterval(() => {
-        raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
+        // raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
     
-        // if (raidBox.style.display="none") {
-        //     raidBox.style.display="block";
-        // } else {
-        //     raidBox.style.display="none";
-        // }
+        if (raidBox.style.display="none") {
+            raidBox.style.display="block";
+            raidAudio.play();
+        } else {
+            raidBox.style.display="none";
+        }
     }, 10000);
 
     raidBox.addEventListener("click", () => {
