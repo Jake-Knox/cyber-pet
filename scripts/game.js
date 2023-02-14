@@ -678,7 +678,7 @@ const logEvent = (message) => {
 // raid shadow legends popup
 const raidShadowAD = () => {
     const raidBox = document.getElementById("raid_container")
-    window.setInterval(() => {
+    let raidInterval = window.setInterval(() => {
         raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
     
         // if (raidBox.style.display="none") {
@@ -687,4 +687,9 @@ const raidShadowAD = () => {
         //     raidBox.style.display="none";
         // }
     }, 10000);
+
+    raidBox.addEventListener("click", () => {
+        raidBox.style.display = "none";
+        clearInterval(raidInterval);
+    })
 } 
