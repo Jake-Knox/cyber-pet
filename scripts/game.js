@@ -628,9 +628,22 @@ const logEvent = (message) => {
     }, 5000); // change lifespan of a single log
 }
 
-// // raid shadow legends popup
-// const raidBox = document.getElementById("raid_conatiner")
+// raid shadow legends popup
 
+const raidBox = document.getElementById("raid_conatiner")
+
+raidBox.onclick=raidBox.style.display="none";
+//     if (raidBox.style.display="none") {
+//         raidBox.style.display="block";
+//     } else {
+//         raidBox.style.display="none"
+//     }
+// );
+
+const raidTimer = window.setTimeout ( () => {
+    raidBox.style.display="block"
+}, 5000
+);
 // const raidTimer = window.setTimeout( () => {
 //         if (raidBox.style.display="none") {
 //             raidBox.style.display="block";
