@@ -319,6 +319,7 @@ class BasePet {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         // Sets all the bars to 0
         myPet.modifyHungerByValue(-9999);
         myPet.modifyThirstByValue(-9999);
@@ -472,7 +473,9 @@ class Rocky extends BasePet {
     // currentX = 999;
     constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness,) {
         super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
-
+        this.modifyHungerByValue(-999);
+        this.modifyThirstByValue(-999);
+        this.modifyHappinessByValue(-999);
     }
 
     unique(){
@@ -656,12 +659,18 @@ const timingFunction = () => {
             }   
         }
 
-        // modifies our pet
-        myPet.modifyHungerByValue(-10);
-        myPet.modifyThirstByValue(-10);
-        myPet.modifyHappinessByValue(-15);
-        myPet.takeDamage(calculateDamage());
-
+        if(petType != petTypeEnum.rocky)
+        {            
+            // modifies our pet // normal pets
+            myPet.modifyHungerByValue(-10);
+            myPet.modifyThirstByValue(-10);
+            myPet.modifyHappinessByValue(-15);
+            myPet.takeDamage(calculateDamage());
+        }
+        else{
+            // rocky
+        }
+        
         // Adds to unique stats
         if(petType == petTypeEnum.godzilla)  {
             myPet.addToRadiation(2);
