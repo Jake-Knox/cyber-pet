@@ -4,7 +4,7 @@ import { Clamp, petTypeEnum } from "./app.js";
 let myPet = null;
 let timeSurvived = 0;
 let totalClicks = 0;
-let currentEvolution = 0;
+let currentEvolution = 1;
 
 // pictures
 const godzilla_pic=document.getElementById("godzilla");
@@ -481,12 +481,13 @@ const AchievementList = [
         return totalClicks == 100 && myPet.isDead; // returns as a boolean
     }),
     new Achievement("Development", "Your pet has reached its 2nd evolution!", "../images/achievements/Up-arrow-1.png", () => {
-        // can only be true if you kill your pet at same time as the 100th click
         return currentEvolution == 2; // returns as a boolean
     }),
     new Achievement("Mature Stages", "Your pet has reached its 3rd evolution!", "../images/achievements/Up-arrow-2.png", () => {
-        // can only be true if you kill your pet at same time as the 100th click
         return currentEvolution == 3; // returns as a boolean
+    }),
+    new Achievement("Ultimate Evolution", "Your pet has reached its final stage, the ultimate hedgehog. (Destroying a frog)", "../images/achievements/Up-arrow-3.png", () => {
+        return currentEvolution == 4; // returns as a boolean
     })
 ]
 
@@ -567,7 +568,6 @@ const timingFunction = () => {
                 godzilla_pic.src="../images/middlezilla.png";   
             }      
 
-            checkAchievements();
         }
         else if(timeSurvived == 30)
         {
@@ -595,6 +595,7 @@ const timingFunction = () => {
         else if(timeSurvived == 60)
         {
             // evolution 4
+            currentEvolution = 4;
             // code to change image of pets to hedgehog
             if(petType == petTypeEnum.electricSheep)
             {
@@ -612,7 +613,6 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
             }   
-            checkAchievements();
         }
 
         // modifies our pet
@@ -643,9 +643,9 @@ const calculateDamage = () => {
     const thirstPercetange = (myPet.currentThirst / myPet.maxThirst) * 100;
     const happinessPercentage = (myPet.currentHappiness / myPet.maxHappiness) * 100;
     
-    const hungerDamage = (100 - hungerPercentage) / 7
-    const thirstDamage = (100 - thirstPercetange) / 7
-    const happinessDamage = (100 - happinessPercentage) / 10
+    const hungerDamage = (100 - hungerPercentage) / (7 + currentEvolution)
+    const thirstDamage = (100 - thirstPercetange) / (7 + currentEvolution)
+    const happinessDamage = (100 - happinessPercentage) / (10 + currentEvolution)
 
     let totalDamage = hungerDamage + thirstDamage + happinessDamage
     // change 5 when testing
