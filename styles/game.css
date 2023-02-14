@@ -116,7 +116,9 @@ p {
     border-color: rgb(161, 172, 181);
     align-self: center;
     z-index: 9999999;
-    image-rendering: auto crisp-edges pixelated;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
     image-rendering: -webkit-optimize-contrast;
 }
 
@@ -184,7 +186,7 @@ img{
 #status_bar_box {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     justify-content:space-around;
     background-color: #a8896c;
     width: 100%;
@@ -349,8 +351,8 @@ h3 {
 .event_text{
     font-size: 2em;
     padding: 0px; 
-     padding: 1vh, 1vw, 1vh, 1vw; 
-     margin: 0px;
+    padding: 1vh, 1vw, 1vh, 1vw; 
+    margin: 0px;
 }
 
 #screen_crack_container{
