@@ -4,6 +4,7 @@ import { Clamp, petTypeEnum } from "./app.js";
 let myPet = null;
 let timeSurvived = 0;
 let totalClicks = 0;
+let currentEvolution = 0;
 
 // pictures
 const godzilla_pic=document.getElementById("godzilla");
@@ -52,6 +53,12 @@ const crackImage = document.getElementById("crack");
 // pet name
 const petNameTitle = document.getElementById("petName");
 petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
+if(petNameTitle.innerText == "")
+{
+    petNameTitle.innerText = "My Pet";
+}
+
+
 
 // sets pictures to hidden as default
 godzilla_pic.style.display = "none";
@@ -204,7 +211,7 @@ class BasePet {
         if(this.isDead) return;
         // do something when fed
         this.modifyHungerByValue(10);
-        logEvent("feeding pet");
+        logEvent(`Feeding ${petNameTitle.innerText} some food`);
 
         updateStatusBars();
     }
@@ -212,7 +219,7 @@ class BasePet {
     drink() {
         if(this.isDead) return;
         // do something when drinking
-        logEvent("drinking pet");
+        logEvent(`Giving ${petNameTitle.innerText} something to drink`);
         this.modifyThirstByValue(10);
 
         updateStatusBars();
@@ -221,7 +228,7 @@ class BasePet {
     play() {
         if(this.isDead) return;
         // do something when played with
-        logEvent("playing with pet");
+        logEvent(`Playing with ${petNameTitle.innerText}`);
         this.modifyHappinessByValue(10);
 
         updateStatusBars();
@@ -231,7 +238,7 @@ class BasePet {
     unique() {
         if(this.isDead) return;
         // do something for unique abiliy        
-        logEvent("USING UNIQUE PET SUPER ABILITY");
+        logEvent(`SPECIAL ABILITY`);
 
     }
 
@@ -278,7 +285,8 @@ class BasePet {
     // called when the pet dies
     #die() {
         this.isDead = true;
-        console.log("RIP PET IS DEAD");
+        // console.log(`RIP ${petNameTitle.innerText} IS DEAD`);
+        logEvent(`RIP. ${petNameTitle.innerText} IS DEAD!`);
         // changes picture to tombstone
         rip_pic.style.display = "block";
         godzilla_pic.style.display = "none";
@@ -347,8 +355,9 @@ class ElectricSheep extends BasePet {
             eSheepAudioUnique.play();
             this.currentCharge = 0;
 
-            this.isFrozen = true;
+            logEvent(`${petNameTitle.innerText} USES EMP TIME FREEZE`);
 
+            this.isFrozen = true;
             // disables it after 10 seconds
             setTimeout(() => {
                 this.isFrozen = false;
@@ -380,6 +389,8 @@ class KingKong extends BasePet {
             super.unique();
             kingKongAudioUnique.play();
             this.currentPowerness = 0;
+
+            logEvent(`${petNameTitle.innerText} USES SMASH SCREEN`);
 
             glassAudio.play();
             crackImage.style.display = "block";  
@@ -416,6 +427,8 @@ class Godzilla extends BasePet {
             godzillaAudioUnique.play();
             this.currentRadiation = 0;
 
+            logEvent(`${petNameTitle.innerText} USES NUCLEAR BREATH`);
+            
             // is this okay?
             this.modifyHungerByValue(750);
             this.modifyThirstByValue(750);
@@ -466,6 +479,14 @@ const AchievementList = [
     new Achievement("The Killer", "Your poor pet :(", "../images/achievements/cursor-killer.png", () => {
         // can only be true if you kill your pet at same time as the 100th click
         return totalClicks == 100 && myPet.isDead; // returns as a boolean
+    }),
+    new Achievement("Development", "Your pet has reached its 2nd evolution!", "../images/achievements/Up-arrow-1.png", () => {
+        // can only be true if you kill your pet at same time as the 100th click
+        return currentEvolution == 2; // returns as a boolean
+    }),
+    new Achievement("Mature Stages", "Your pet has reached its 3rd evolution!", "../images/achievements/Up-arrow-2.png", () => {
+        // can only be true if you kill your pet at same time as the 100th click
+        return currentEvolution == 3; // returns as a boolean
     })
 ]
 
@@ -522,9 +543,12 @@ const timingFunction = () => {
         if(myPet.isDead) return;
 
         timeSurvived++;
+        // evolutions based on time survived
         if(timeSurvived == 15)
         {
             // evolution 2
+            currentEvolution = 2;
+            
             // code to change image of pets
             if(petType == petTypeEnum.electricSheep)
             {
@@ -542,10 +566,14 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/middlezilla.png";   
             }      
+
+            checkAchievements();
         }
         else if(timeSurvived == 30)
         {
             // evolution 3
+            currentEvolution = 3;
+
             // code to change image of pets again
             if(petType == petTypeEnum.electricSheep)
             {
@@ -584,6 +612,7 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
             }   
+            checkAchievements();
         }
 
         // modifies our pet

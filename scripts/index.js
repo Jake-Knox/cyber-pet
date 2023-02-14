@@ -80,7 +80,7 @@ petChangeTypeBox.addEventListener("change", (event) => {
 petCreationButton.addEventListener("click", () => {
     // userSettings.name = currentUserSettings.name;
     // userSettings.petType = currentUserSettings.petType;
-    window.location.href = "../html/game.html"
+        window.location.href = "../html/game.html"
     localStorage.setItem("userSettingsPetName", currentUserSettings.name)
     localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
