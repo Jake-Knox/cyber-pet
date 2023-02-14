@@ -629,7 +629,6 @@ const logEvent = (message) => {
 }
 
 // raid shadow legends popup
-<<<<<<< HEAD
 const raidShadowAD = () => {
     const raidBox = document.getElementById("raid_container")
     window.setInterval(() => {
@@ -642,30 +641,3 @@ const raidShadowAD = () => {
         // }
     }, 10000);
 } 
-=======
-
-const raidBox = document.getElementById("raid_conatiner")
-
-raidBox.onclick=raidBox.style.display="none";
-//     if (raidBox.style.display="none") {
-//         raidBox.style.display="block";
-//     } else {
-//         raidBox.style.display="none"
-//     }
-// );
-
-const raidTimer = window.setTimeout ( () => {
-    raidBox.style.display="block"
-}, 5000
-);
-// const raidTimer = window.setTimeout( () => {
-//         if (raidBox.style.display="none") {
-//             raidBox.style.display="block";
-//         } else {
-//             window.setTimeout(() => {
-//                 window.clearTimeout(this.raidTimer);
-//                 raidBox.style.display="none";
-//             }, 5000)
-//         }
-//     }, 5000);
->>>>>>> 552451450674ccf1aa4d79759d6d2c574239c161
