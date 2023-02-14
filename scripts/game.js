@@ -126,7 +126,7 @@ window.addEventListener("load", (event) => {
 
     timingFunction();
     updateStatusBars();
-    raidTimer();
+    raidShadowAD();
 })
 
 const addToTotalClicks = () => {
@@ -628,16 +628,16 @@ const logEvent = (message) => {
     }, 5000); // change lifespan of a single log
 }
 
-// // raid shadow legends popup
-// const raidBox = document.getElementById("raid_conatiner")
-
-// const raidTimer = window.setTimeout( () => {
-//         if (raidBox.style.display="none") {
-//             raidBox.style.display="block";
-//         } else {
-//             window.setTimeout(() => {
-//                 window.clearTimeout(this.raidTimer);
-//                 raidBox.style.display="none";
-//             }, 5000)
-//         }
-//     }, 5000);
+// raid shadow legends popup
+const raidShadowAD = () => {
+    const raidBox = document.getElementById("raid_container")
+    window.setInterval(() => {
+        raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
+    
+        // if (raidBox.style.display="none") {
+        //     raidBox.style.display="block";
+        // } else {
+        //     raidBox.style.display="none";
+        // }
+    }, 10000);
+} 

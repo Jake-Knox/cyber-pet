@@ -9,6 +9,7 @@
 #57402b dark brown
 */
 
+
 * {
     font-family: 'IM Fell English SC', serif;
 }
@@ -115,6 +116,8 @@ p {
     border-color: rgb(161, 172, 181);
     align-self: center;
     z-index: 9999999;
+    image-rendering: auto crisp-edges pixelated;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .achievement > div {
@@ -376,8 +379,13 @@ audio{
     display:none;
 }
 
-/* #raid_container {
+#raid_container {
     position:fixed;
     margin:0vw 0vw 0vw 28.4vw;
     display: none;
-} */
+}
+
+#raid_button {
+    height: 20vh;
+    overflow: hidden;
+}
