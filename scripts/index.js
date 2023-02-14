@@ -25,6 +25,7 @@ const previewImages = {
     ["godzilla"]: "../images/godzilla.jpg",
     ["king kong"]: "../images/kong.jpg",
     ["electric sheep"]: "../images/sheep.jpg",
+    ["rocky"]: "../images/rocky2.png",
 }
 
 const currentUserSettings = {
@@ -78,6 +79,12 @@ petChangeTypeBox.addEventListener("change", (event) => {
             currentUserSettings.petType = petTypeEnum.electricSheep;
             sheepAudio1.play();
             break;
+        case "rocky":
+            currentUserSettings.petType = petTypeEnum.rocky;
+            currentUserSettings.name = "Rocky";
+            petNameP.textContent = "Rocky";
+            // rocky audio
+            break;
     }
 })
 
@@ -93,6 +100,13 @@ secretPetDiv.addEventListener("click", () =>{
     secretPetDiv.style.backgroundImage = "url('../images/rocky2.png')";
     secretPetDiv.style.backgroundSize = "contain";
     secretText.innerText = "unlocked Rocky!";
-    console.log("secret unlock")
+
+    const newOption = document.createElement("option");
+    newOption.value="Rocky";
+    newOption.innerText="Rocky";
+    petChangeTypeBox.appendChild(newOption);
+
+    // <option value="Electric Sheep">Electric Sheep</option>
 });
+
 
