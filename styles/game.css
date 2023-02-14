@@ -386,6 +386,7 @@ audio{
 }
 
 #raid_button {
-    height: 20vh;
+    height: 20vw;
+    width: auto;
     overflow: hidden;
 }
