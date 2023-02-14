@@ -4,6 +4,7 @@ import { Clamp, petTypeEnum } from "./app.js";
 let myPet = null;
 let timeSurvived = 0;
 let totalClicks = 0;
+let currentEvolution = 0;
 
 // pictures
 const godzilla_pic=document.getElementById("godzilla");
@@ -466,6 +467,14 @@ const AchievementList = [
     new Achievement("The Killer", "Your poor pet :(", "../images/achievements/cursor-killer.png", () => {
         // can only be true if you kill your pet at same time as the 100th click
         return totalClicks == 100 && myPet.isDead; // returns as a boolean
+    }),
+    new Achievement("Development", "Your pet has reached its 2nd evolution!", "../images/achievements/Up-arrow-1.png", () => {
+        // can only be true if you kill your pet at same time as the 100th click
+        return currentEvolution == 2; // returns as a boolean
+    }),
+    new Achievement("Mature Stages", "Your pet has reached its 3rd evolution!", "../images/achievements/Up-arrow-2.png", () => {
+        // can only be true if you kill your pet at same time as the 100th click
+        return currentEvolution == 3; // returns as a boolean
     })
 ]
 
@@ -525,6 +534,8 @@ const timingFunction = () => {
         if(timeSurvived == 15)
         {
             // evolution 2
+            currentEvolution = 2;
+            
             // code to change image of pets
             if(petType == petTypeEnum.electricSheep)
             {
@@ -542,10 +553,14 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/middlezilla.png";   
             }      
+
+            checkAchievements();
         }
         else if(timeSurvived == 30)
         {
             // evolution 3
+            currentEvolution = 3;
+
             // code to change image of pets again
             if(petType == petTypeEnum.electricSheep)
             {
@@ -564,6 +579,7 @@ const timingFunction = () => {
                 godzilla_pic.src="../images/godzilla.jpg";   
             }   
 
+            checkAchievements();
         }
 
         // modifies our pet
