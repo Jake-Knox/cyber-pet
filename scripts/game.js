@@ -563,7 +563,27 @@ const timingFunction = () => {
                 // catch godzilla
                 godzilla_pic.src="../images/godzilla.jpg";   
             }   
-
+        }
+        else if(timeSurvived == 60)
+        {
+            // evolution 4
+            // code to change image of pets to hedgehog
+            if(petType == petTypeEnum.electricSheep)
+            {
+                sheep_pic.src="../images/hedgehog_vs_frog.jpg";          
+            }
+            else if(petType == petTypeEnum.kingKong)
+            {
+                kong_pic.src="../images/hedgehog_vs_frog.jpg";                        
+            }
+            else if(petType == petTypeEnum.godzilla)
+            {
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";                   
+            }
+            else {
+                // catch godzilla
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
+            }   
         }
 
         // modifies our pet
