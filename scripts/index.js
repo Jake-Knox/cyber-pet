@@ -32,6 +32,10 @@ const currentUserSettings = {
     petType: petTypeEnum.godzilla,
 }
 
+// secret pet - rocky
+const secretPetDiv = document.getElementById("secret-div");
+const secretText = document.getElementById("secret-text")
+
 // set name change input box and submit button invisible to start
 nameChangeSubmit.style.display = "none";
 nameChangeInput.style.display = "none";
@@ -84,3 +88,11 @@ petCreationButton.addEventListener("click", () => {
     localStorage.setItem("userSettingsPetName", currentUserSettings.name)
     localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
+
+secretPetDiv.addEventListener("click", () =>{
+    secretPetDiv.style.backgroundImage = "url('../images/rocky2.png')";
+    secretPetDiv.style.backgroundSize = "contain";
+    secretText.innerText = "unlocked Rocky!";
+    console.log("secret unlock")
+});
+
