@@ -96,7 +96,11 @@ petCreationButton.addEventListener("click", () => {
     localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
 
+let unlockedRocky = false;
+
 secretPetDiv.addEventListener("click", () =>{
+
+    if(unlockedRocky) return;
     secretPetDiv.style.backgroundImage = "url('../images/rocky2.png')";
     secretPetDiv.style.backgroundSize = "contain";
     secretText.innerText = "unlocked Rocky!";
@@ -105,6 +109,9 @@ secretPetDiv.addEventListener("click", () =>{
     newOption.value="Rocky";
     newOption.innerText="Rocky";
     petChangeTypeBox.appendChild(newOption);
+
+
+    unlockedRocky = true;
 
     // <option value="Electric Sheep">Electric Sheep</option>
 });
