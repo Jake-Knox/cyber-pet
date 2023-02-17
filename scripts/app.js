@@ -12,6 +12,7 @@ const petTypeEnum = {
     godzilla: 100,
     kingKong: 200,
     electricSheep: 300,
+    rocky: 400,
 }
 
 export { Clamp, petTypeEnum };

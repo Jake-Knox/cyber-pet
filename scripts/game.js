@@ -10,6 +10,7 @@ let currentEvolution = 1;
 const godzilla_pic=document.getElementById("godzilla");
 const kong_pic=document.getElementById("kong");
 const sheep_pic=document.getElementById("sheep");
+const rocky_pic=document.getElementById("rocky");
 const rip_pic=document.getElementById("rip");
 
 // status bars
@@ -28,8 +29,16 @@ const uniqueButton = document.getElementById("unique_button");
 const killButton = document.getElementById("kill_button");
 
 // audio sources
+const backgroundAudio = document.getElementById("backgroundAudio");
+backgroundAudio.volume = 0.1;
+
+const raidAudio = document.getElementById("raidAudio");
+
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
+
+const jojoAudio = document.getElementById("jojoAudio");
+jojoAudio.volume = 0.1;
 
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
@@ -55,7 +64,7 @@ const petNameTitle = document.getElementById("petName");
 petNameTitle.textContent = localStorage.getItem("userSettingsPetName");
 if(petNameTitle.innerText == "")
 {
-    petNameTitle.innerText = "My Pet";
+    petNameTitle.innerText = "my pet";
 }
 
 
@@ -64,6 +73,7 @@ if(petNameTitle.innerText == "")
 godzilla_pic.style.display = "none";
 kong_pic.style.display = "none";
 sheep_pic.style.display = "none";
+rocky_pic.style.display = "none";
 rip_pic.style.display = "none";
 
 // gets the pet type in local storage
@@ -82,6 +92,7 @@ window.addEventListener("load", (event) => {
         kong_pic.style.display = "none";
         sheep_pic.src="../images/babySheep.png";
         sheep_pic.style.display = "block";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "charge"
@@ -98,6 +109,7 @@ window.addEventListener("load", (event) => {
         kong_pic.src="../images/babyKong.png";
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "rage"
@@ -114,11 +126,31 @@ window.addEventListener("load", (event) => {
         godzilla_pic.style.display = "block";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
 
         uniqueBarTitle.textContent = "radiation"
         uniqueBar.style.backgroundColor = "rgb(31, 255, 83)";
         uniqueButton.innerText = "roar";
+        
+    }else if(petType == petTypeEnum.rocky)
+    {
+        // create a rocky
+        myPet = new Rocky(localStorage.getItem("userSettingsPetName"),999,999,999,999)
+        // show rocky, hide other pictures
+
+        // add rocky img
+        // hide rocky img in other parts
+
+        godzilla_pic.style.display = "none";
+        kong_pic.style.display = "none";
+        sheep_pic.style.display = "none";
+        rocky_pic.style.display = "block";
+        rip_pic.style.display = "none";
+
+        uniqueBarTitle.textContent = "rockin'"
+        uniqueBar.style.backgroundColor = "rgb(165,42,42)";
+        uniqueButton.innerText = "rock";
         
     }
     else{
@@ -292,6 +324,7 @@ class BasePet {
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
         sheep_pic.style.display = "none";
+        rocky_pic.style.display = "none";
         // Sets all the bars to 0
         myPet.modifyHungerByValue(-9999);
         myPet.modifyThirstByValue(-9999);
@@ -304,6 +337,8 @@ class BasePet {
             myPet.addToCharge(-9999);
         };
         updateStatusBars();
+        backgroundAudio.pause();
+        jojoAudio.pause();
         reaperAudio.play();
     }
 }
@@ -440,6 +475,19 @@ class Godzilla extends BasePet {
         this.currentRadiation = Clamp(this.currentRadiation + value, 0, this.maxRadiation);
     }
 }
+class Rocky extends BasePet {
+    // currentX = 999;
+    constructor(name, maxHealth, maxHunger, maxThirst, maxHappiness,) {
+        super(name, maxHealth, maxHunger, maxThirst, maxHappiness);
+        this.modifyHungerByValue(-999);
+        this.modifyThirstByValue(-999);
+        this.modifyHappinessByValue(-999);
+    }
+
+    unique(){
+        // nothing        
+    }
+}
 
 // Achievement constructor
 class Achievement {
@@ -545,7 +593,7 @@ const timingFunction = () => {
 
         timeSurvived++;
         // evolutions based on time survived
-        if(timeSurvived == 15)
+        if(timeSurvived == 20)
         {
             // evolution 2
             currentEvolution = 2;
@@ -569,7 +617,7 @@ const timingFunction = () => {
             }      
 
         }
-        else if(timeSurvived == 30)
+        else if(timeSurvived == 40)
         {
             // evolution 3
             currentEvolution = 3;
@@ -596,31 +644,50 @@ const timingFunction = () => {
         {
             // evolution 4
             currentEvolution = 4;
-            // code to change image of pets to hedgehog
+
+            // code to change image of pets to hedgehog and play jojo theme
             if(petType == petTypeEnum.electricSheep)
             {
-                sheep_pic.src="../images/hedgehog_vs_frog.jpg";          
+                sheep_pic.src="../images/hedgehog_vs_frog.jpg";  
+                backgroundAudio.pause();
+                jojoAudio.play();        
             }
             else if(petType == petTypeEnum.kingKong)
             {
-                kong_pic.src="../images/hedgehog_vs_frog.jpg";                        
+                kong_pic.src="../images/hedgehog_vs_frog.jpg";
+                backgroundAudio.pause();
+                jojoAudio.play();                       
             }
             else if(petType == petTypeEnum.godzilla)
             {
-                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";                   
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
+                backgroundAudio.pause();
+                jojoAudio.play();                  
+            }
+            else if (petType == petTypeEnum.rocky)
+            {
+                // do nothing
             }
             else {
                 // catch godzilla
-                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";   
+                godzilla_pic.src="../images/hedgehog_vs_frog.jpg";
+                backgroundAudio.pause();
+                jojoAudio.play();  
             }   
         }
 
-        // modifies our pet
-        myPet.modifyHungerByValue(-10);
-        myPet.modifyThirstByValue(-10);
-        myPet.modifyHappinessByValue(-15);
-        myPet.takeDamage(calculateDamage());
-
+        if(petType != petTypeEnum.rocky)
+        {            
+            // modifies our pet // normal pets
+            myPet.modifyHungerByValue(-10);
+            myPet.modifyThirstByValue(-10);
+            myPet.modifyHappinessByValue(-15);
+            myPet.takeDamage(calculateDamage());
+        }
+        else{
+            // rocky
+        }
+        
         // Adds to unique stats
         if(petType == petTypeEnum.godzilla)  {
             myPet.addToRadiation(2);
@@ -728,13 +795,14 @@ const logEvent = (message) => {
 const raidShadowAD = () => {
     const raidBox = document.getElementById("raid_container")
     let raidInterval = window.setInterval(() => {
-        raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
+        // raidBox.style.display = raidBox.style.display == "none" ? "block" : "none";
     
-        // if (raidBox.style.display="none") {
-        //     raidBox.style.display="block";
-        // } else {
-        //     raidBox.style.display="none";
-        // }
+        if (raidBox.style.display="none") {
+            raidBox.style.display="block";
+            raidAudio.play();
+        } else {
+            raidBox.style.display="none";
+        }
     }, 10000);
 
     raidBox.addEventListener("click", () => {

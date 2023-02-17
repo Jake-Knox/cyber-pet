@@ -143,3 +143,20 @@
     font-weight: 66px;
     background-color: #f1e8a7;
 }
+
+#secret-container{
+
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#secret-div{
+        
+    width: 150px;
+    height: 150px;
+    background-color: #61b292;
+
+}

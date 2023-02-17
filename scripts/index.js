@@ -25,12 +25,17 @@ const previewImages = {
     ["godzilla"]: "../images/godzilla.jpg",
     ["king kong"]: "../images/kong.jpg",
     ["electric sheep"]: "../images/sheep.jpg",
+    ["rocky"]: "../images/rocky2.png",
 }
 
 const currentUserSettings = {
     name: "",
     petType: petTypeEnum.godzilla,
 }
+
+// secret pet - rocky
+const secretPetDiv = document.getElementById("secret-div");
+const secretText = document.getElementById("secret-text")
 
 // set name change input box and submit button invisible to start
 nameChangeSubmit.style.display = "none";
@@ -74,6 +79,12 @@ petChangeTypeBox.addEventListener("change", (event) => {
             currentUserSettings.petType = petTypeEnum.electricSheep;
             sheepAudio1.play();
             break;
+        case "rocky":
+            currentUserSettings.petType = petTypeEnum.rocky;
+            currentUserSettings.name = "rocky";
+            petNameP.textContent = "rocky";
+            // rocky audio
+            break;
     }
 })
 
@@ -84,3 +95,25 @@ petCreationButton.addEventListener("click", () => {
     localStorage.setItem("userSettingsPetName", currentUserSettings.name)
     localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
+
+let unlockedRocky = false;
+
+secretPetDiv.addEventListener("click", () =>{
+
+    if(unlockedRocky) return;
+    secretPetDiv.style.backgroundImage = "url('../images/rocky2.png')";
+    secretPetDiv.style.backgroundSize = "contain";
+    secretText.innerText = "unlocked Rocky!";
+
+    const newOption = document.createElement("option");
+    newOption.value="Rocky";
+    newOption.innerText="Rocky";
+    petChangeTypeBox.appendChild(newOption);
+
+
+    unlockedRocky = true;
+
+    // <option value="Electric Sheep">Electric Sheep</option>
+});
+
+
