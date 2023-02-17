@@ -22,10 +22,10 @@ sheepAudio1.volume = 0.5;
 
 
 const previewImages = {
-    ["godzilla"]: "../images/godzilla.jpg",
-    ["king kong"]: "../images/kong.jpg",
-    ["electric sheep"]: "../images/sheep.jpg",
-    ["rocky"]: "../images/rocky2.png",
+    ["godzilla"]: "./images/godzilla.jpg",
+    ["king kong"]: "./images/kong.jpg",
+    ["electric sheep"]: "./images/sheep.jpg",
+    ["rocky"]: "./images/rocky2.png",
 }
 
 const currentUserSettings = {
@@ -91,7 +91,7 @@ petChangeTypeBox.addEventListener("change", (event) => {
 petCreationButton.addEventListener("click", () => {
     // userSettings.name = currentUserSettings.name;
     // userSettings.petType = currentUserSettings.petType;
-        window.location.href = "../html/game.html"
+        window.location.href = "./html/game.html"
     localStorage.setItem("userSettingsPetName", currentUserSettings.name)
     localStorage.setItem("userSettingsPetType", currentUserSettings.petType.toString())
 })
@@ -101,7 +101,7 @@ let unlockedRocky = false;
 secretPetDiv.addEventListener("click", () =>{
 
     if(unlockedRocky) return;
-    secretPetDiv.style.backgroundImage = "url('../images/rocky2.png')";
+    secretPetDiv.style.backgroundImage = "url('./images/rocky2.png')";
     secretPetDiv.style.backgroundSize = "contain";
     secretText.innerText = "unlocked Rocky!";
 
