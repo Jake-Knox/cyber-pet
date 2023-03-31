@@ -28,23 +28,20 @@ const playButton = document.getElementById("play_button");
 const uniqueButton = document.getElementById("unique_button");
 const killButton = document.getElementById("kill_button");
 
+// remember to test out volume changes - some sounds may need different changes
+
 // audio sources
 const backgroundAudio = document.getElementById("backgroundAudio");
 backgroundAudio.volume = 0.1;
-
 const raidAudio = document.getElementById("raidAudio");
-
 const reaperAudio = document.getElementById("reaperAudio");
 reaperAudio.volume = 0.1; 
-
 const jojoAudio = document.getElementById("jojoAudio");
 jojoAudio.volume = 0.1;
-
 const glassAudio = document.getElementById("glass_shatter_audio");
 glassAudio.volume = 0.1; 
 const achievementAudio1 = document.getElementById("achievement_audio_1");
 
-// remember to test out volume changes - some sounds may need different changes
 const godzillaAudio1 = document.getElementById("godzilla_audio_1");
 const godzillaAudio2 = document.getElementById("godzilla_audio_2");
 const godzillaAudioUnique = document.getElementById("godzilla_audio_3");
@@ -90,7 +87,7 @@ window.addEventListener("load", (event) => {
         // show sheep, hide other pictures
         godzilla_pic.style.display = "none";
         kong_pic.style.display = "none";
-        sheep_pic.src="../images/babySheep.png";
+        sheep_pic.src="../images/babysheep.png";
         sheep_pic.style.display = "block";
         rocky_pic.style.display = "none";
         rip_pic.style.display = "none";
@@ -106,7 +103,7 @@ window.addEventListener("load", (event) => {
         myPet = new KingKong(localStorage.getItem("userSettingsPetName"),999,999,999,999,100)
         // show kong, hide other pictures
         godzilla_pic.style.display = "none";
-        kong_pic.src="../images/babyKong.png";
+        kong_pic.src="../images/babykong.png";
         kong_pic.style.display = "block";
         sheep_pic.style.display = "none";
         rocky_pic.style.display = "none";
@@ -601,7 +598,7 @@ const timingFunction = () => {
             // code to change image of pets
             if(petType == petTypeEnum.electricSheep)
             {
-                sheep_pic.src="../images/middleSheep.png";          
+                sheep_pic.src="../images/middlesheep.png";          
             }
             else if(petType == petTypeEnum.kingKong)
             {
